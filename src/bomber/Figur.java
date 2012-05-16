@@ -1,21 +1,29 @@
 package bomber;
 
+import java.awt.Image;
 import java.awt.event.KeyEvent;
+
+import javax.swing.ImageIcon;
 
 public class Figur {
 	int x, y,dx,dy;
-	
+	Image guy;
 	
 	public Figur(int xPosition,int yPosition){
 		x=xPosition;
 		y=yPosition;
+		ImageIcon i = new ImageIcon("guy.png");
+		guy = i.getImage();
 	}
 	
-	private int getX(){
+	public int getX(){
 		return x;
 	}
-	private int getY(){
+	public int getY(){
 		return y;
+	}	
+	public Image getImage(){
+		return guy;
 	}
 
 //Movement
