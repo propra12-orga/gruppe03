@@ -21,10 +21,14 @@ public class Board extends JPanel implements ActionListener {
 		bomber1 = new Figur(30,30);
 		addKeyListener(new AL());
 		setFocusable(true);
+		
 		ImageIcon i = new ImageIcon("feld.png");
 		img = i.getImage();
+		
 		time = new Timer(5, this);
 		time.start();
+		//test bombe malen
+		b = new Bombe(60,60,1);
 	}
 
 	public void actionPerformed(ActionEvent e) {

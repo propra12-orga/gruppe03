@@ -6,11 +6,22 @@ import javax.swing.ImageIcon;
 
 public class Bombe {
 	Image bomb;
-	int radius;
+	int radius,x,y;
 	
-	public Bombe(int radius){
-		ImageIcon i = new ImageIcon("bomb.jpg");
+	public Bombe(int xPosition,int yPosition,int radius){
+		ImageIcon i = new ImageIcon("bombe2.png");
 		bomb = i.getImage();
-		radius= this.radius;
+		this.radius= radius;
+		x=xPosition;
+		y=yPosition;
+	}
+	public int getX(){
+		return x;
+	}
+	public int getY(){
+		return y;
+	}	
+	public Image getImage(){
+		return bomb;
 	}
 }

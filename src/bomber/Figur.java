@@ -30,17 +30,17 @@ public class Figur {
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_LEFT)
-			x-=1;
+			x-=10;
 
 		if (key == KeyEvent.VK_RIGHT)
-			x+=1;
+			x+=10;
 	
 		if (key == KeyEvent.VK_UP)
-			y-=1;
+			y-=10;
 
 		if (key == KeyEvent.VK_DOWN)
-			y += 1;
-	}
+			y += 10;		
+	}	
 
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
