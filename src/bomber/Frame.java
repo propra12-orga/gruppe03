@@ -18,7 +18,7 @@ public class Frame {
 		frame.setTitle("our Bombing Game 2 gud");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(1000,700);
-		frame.setVisible(false);
+		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
 	}
 	public static void main(String[] args){

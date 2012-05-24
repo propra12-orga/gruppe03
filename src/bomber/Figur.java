@@ -26,12 +26,12 @@ public class Figur {
 	public Image getImage(){
 		return guy;
 	}
-	//Bombe legen
-	/*public void setBomb(){
+	//bombe legen
+	public void setBomb(){
 		if (maxBombs > bombsWorking){
-			Bombe.setBombe(x,y,radi);
+			Bombe b = new Bombe(x,y,radi);
 		}
-	}*/
+	}
 
 //Movement
 	public void keyPressed(KeyEvent e) {
@@ -46,10 +46,7 @@ public class Figur {
 			y-=10;
 
 		if (key == KeyEvent.VK_DOWN)
-			y += 10;	
-		
-	//	if (key == KeyEvent.VK_SPACE)
-			
+			y += 10;			
 	}	
 
 	public void keyReleased(KeyEvent e) {

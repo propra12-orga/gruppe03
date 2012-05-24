@@ -14,7 +14,7 @@ import javax.swing.Timer;
 
 public class Board extends JPanel implements ActionListener {
 	Figur bomber1;
-	public Image img,block0,block1;
+	public Image img,block0,block1,bomb;
 	Timer time;
 	int [][]feld= new int[9][6];
 	boolean ini;
@@ -34,14 +34,17 @@ public class Board extends JPanel implements ActionListener {
 		addKeyListener(new AL());
 		setFocusable(true);
 		
-		ImageIcon i = new ImageIcon("feld.png");
-		img = i.getImage();
+		ImageIcon i1 = new ImageIcon("feld.png");
+		img = i1.getImage();
 		
-		ImageIcon k = new ImageIcon("block0.jpg");
-		block0 = k.getImage();
+		ImageIcon i2 = new ImageIcon("block0.jpg");
+		block0 = i2.getImage();
 		
-		ImageIcon l = new ImageIcon("block1.jpg");
-		block1 = l.getImage();
+		ImageIcon i3 = new ImageIcon("block1.jpg");
+		block1 = i3.getImage();
+		
+		ImageIcon i4 = new ImageIcon("bombe2.png");
+		bomb = i4.getImage();
 		
 		time = new Timer(5, this);
 		time.start();
@@ -58,28 +61,40 @@ public class Board extends JPanel implements ActionListener {
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
 
+		
+		
 		g2d.drawImage(img, 0, 0, null);
 		for (int i =0; i<9; i++){
 			for (int j=0; j<6;j++){
 				
 				if (feld[i][j]==0){
-				g2d.drawImage(block0, i*100, j*100, null);}
+					g2d.drawImage(block0, i*100, j*100, null);}
 				else if(feld[i][j]==1){
 					g2d.drawImage(block1, i*100, j*100, null);}
-					}
+				else if(feld[i][j]==10){
+						g2d.drawImage(bomb, i*100, j*100, null);}
+				}		
 			}
-		
 		g2d.drawImage(bomber1.getImage(), bomber1.getX(), bomber1.getY(), null);
-		
 	}
 
+	public void setBomb(int x, int y, int radi) {
+		feld[x/100][y/100]=10;
+		
+	}
+	
 	private class AL extends KeyAdapter {
 		public void keyReleased(KeyEvent e) {
 			bomber1.keyReleased(e);
 		}
 
 		public void keyPressed(KeyEvent e) {
+			int key = e.getKeyCode();
 			bomber1.keyPressed(e);
+	//		if (key == KeyEvent.VK_SPACE)
+		//		setBomb(bomber1.getX(),bomber1.getY(),bomber1.radi);
 		}
 	}
+
+	
 }
