@@ -23,14 +23,14 @@ public class Board extends JPanel implements ActionListener {
 		
 		for (int in =0; in<9; in++){
 			for (int jn=0; jn<6;jn++){
-				if (in%2==0 && jn%2==0)
-				feld[in][jn]=1;
+				if (in%2==1 && jn%2==1)
+				feld[in][jn]=0;
 				else
-					feld [in][jn]=0;
+					feld [in][jn]=1;
 			}
 		}
 		
-		bomber1 = new Figur(30,30);
+		bomber1 = new Figur(0,0);
 		addKeyListener(new AL());
 		setFocusable(true);
 		
