@@ -28,7 +28,7 @@ public class Board extends JPanel implements ActionListener {
 		time = new Timer(5, this);
 		time.start();
 		//test bombe malen
-		b = new Bombe(60,60,1);
+		//b = new Bombe(60,60,1);
 	}
 
 	public void actionPerformed(ActionEvent e) {
