@@ -9,10 +9,10 @@ public class Block {
 		int x, y,dx,dy;
 		Image block;
 		
-		public Figur(int xPosition,int yPosition){
+		public Block(int xPosition,int yPosition){
 			x=xPosition;
 			y=yPosition;
-			ImageIcon i = new ImageIcon("");
+			ImageIcon i = new ImageIcon("block0.jpg");
 			block = i.getImage();
 		}
 		

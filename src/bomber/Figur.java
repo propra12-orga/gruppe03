@@ -6,12 +6,13 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 
 public class Figur {
-	int x, y,dx,dy;
+	int x, y,dx,dy,radi,maxBombs,bombsWorking;
 	Image guy;
 	
 	public Figur(int xPosition,int yPosition){
 		x=xPosition;
 		y=yPosition;
+		maxBombs=1;
 		ImageIcon i = new ImageIcon("link.png");
 		guy = i.getImage();
 	}
@@ -25,6 +26,12 @@ public class Figur {
 	public Image getImage(){
 		return guy;
 	}
+	//Bombe legen
+	/*public void setBomb(){
+		if (maxBombs > bombsWorking){
+			Bombe.setBombe(x,y,radi);
+		}
+	}*/
 
 //Movement
 	public void keyPressed(KeyEvent e) {
@@ -39,7 +46,10 @@ public class Figur {
 			y-=10;
 
 		if (key == KeyEvent.VK_DOWN)
-			y += 10;		
+			y += 10;	
+		
+	//	if (key == KeyEvent.VK_SPACE)
+			
 	}	
 
 	public void keyReleased(KeyEvent e) {

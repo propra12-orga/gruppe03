@@ -6,12 +6,12 @@ import javax.swing.ImageIcon;
 
 public class Bombe {
 	Image bomb;
-	int radius,x,y;
+	int r,x,y;
 	
 	public Bombe(int xPosition,int yPosition,int radius){
 		ImageIcon i = new ImageIcon("bombe2.png");
 		bomb = i.getImage();
-		this.radius= radius;
+		r = radius;
 		x=xPosition;
 		y=yPosition;
 	}
@@ -24,4 +24,15 @@ public class Bombe {
 	public Image getImage(){
 		return bomb;
 	}
+	 		  
+/*	public static void setBombe(int posx, int posy, int radius) {
+	    x = posx;
+	    y = posy;
+	    r = radius;
+	//    timerEnd = t;
+	  //  area.box[positionX][positionY].setBomb();
+	    //operating = true;
+	   // timeStart = (float)frameCount / FRAME_RATE;   
+		
+	}*/
 }
