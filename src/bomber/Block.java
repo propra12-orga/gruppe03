@@ -13,7 +13,7 @@ public class Block {
 			x=xPosition;
 			y=yPosition;
 			ImageIcon i = new ImageIcon("");
-			guy = i.getImage();
+			block = i.getImage();
 		}
 		
 		public int getX(){
@@ -23,6 +23,6 @@ public class Block {
 			return y;
 		}	
 		public Image getImage(){
-			return guy;
+			return block;
 		}
 }

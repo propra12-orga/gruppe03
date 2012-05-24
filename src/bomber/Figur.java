@@ -12,7 +12,7 @@ public class Figur {
 	public Figur(int xPosition,int yPosition){
 		x=xPosition;
 		y=yPosition;
-		ImageIcon i = new ImageIcon("guy.png");
+		ImageIcon i = new ImageIcon("link.png");
 		guy = i.getImage();
 	}
 	
