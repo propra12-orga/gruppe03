@@ -5,12 +5,20 @@ import javax.swing.JFrame;
 public class Frame {
 
 	public Frame(){
+		JFrame menu = new JFrame();
+		menu.add(new Board());
+		menu.setTitle("our Bombing Game 2 gud");
+		menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		menu.setSize(1000,700);
+		menu.setVisible(true);
+		menu.setLocationRelativeTo(null);
+		
 		JFrame frame = new JFrame();
 		frame.add(new Board());
 		frame.setTitle("our Bombing Game 2 gud");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(1000,700);
-		frame.setVisible(true);
+		frame.setVisible(false);
 		frame.setLocationRelativeTo(null);
 	}
 	public static void main(String[] args){
