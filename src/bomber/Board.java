@@ -16,18 +16,19 @@ public class Board extends JPanel implements ActionListener {
 	Figur bomber1;
 	public Image img,block0,block1,bomb;
 	Timer time;
-	int [][]feld= new int[9][6];
+	int [][]feld= new int[15][11];
 	boolean ini;
 	int m; //movementreichweite
 
 	public Board() {
-		
-		for (int in =0; in<9; in++){
-			for (int jn=0; jn<6;jn++){
-				if (in%2==1 && jn%2==1)
-				feld[in][jn]=0;
-				else
-					feld [in][jn]=1;
+		//Initialisiere Feld
+		for (int in=0; in<15; in++){
+			for (int jn=0; jn<11;jn++){
+				
+				if (in==0 || jn==0 ||in==14 ||jn==10 ||(in%2==0 &&jn %2==0))
+					feld[in][jn]=1;
+				else 
+					feld [in][jn]=0;
 			}
 		}
 		m=4; //movementreichweite
@@ -64,24 +65,27 @@ public class Board extends JPanel implements ActionListener {
 	public void paint(Graphics g) {
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
-		
+	
+// Feld wird gemalt
+// 0=block0(laufweg) 1=block1(fester block) 10=bombe
 		g2d.drawImage(img, 0, 0, null);
-		for (int i =0; i<9; i++){
-			for (int j=0; j<6;j++){
+		int blocksize=60;
+		for (int i =0; i<15; i++){
+			for (int j=0; j<11;j++){
 				
 				if (feld[i][j]==0){
-					g2d.drawImage(block0, i*100, j*100, null);}
+					g2d.drawImage(block0, i*blocksize, j*blocksize, null);}
 				else if(feld[i][j]==1){
-					g2d.drawImage(block1, i*100, j*100, null);}
+					g2d.drawImage(block1, i*blocksize, j*blocksize, null);}
 				else if(feld[i][j]==10){
-						g2d.drawImage(bomb, i*100, j*100, null);}
+						g2d.drawImage(bomb, i*blocksize, j*blocksize, null);}
 				}		
 			}
 		g2d.drawImage(bomber1.getImage(), bomber1.getX(), bomber1.getY(), null);
 	}
 
 	public void setBomb(int x, int y, int radi) {
-		feld[x/100][y/100]=10;
+		feld[x/60][y/60]=10; // setzt den feld array auf 10=Bombe
 		
 	}
 /* OLD KEY MOVEMNT
@@ -98,7 +102,7 @@ public class Board extends JPanel implements ActionListener {
 		}
 	}*/
 	
-//New key Movement
+// KEY ABFRAGE
 	private class AL extends KeyAdapter {	
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
