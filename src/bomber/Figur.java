@@ -33,11 +33,27 @@ public class Figur {
 		}
 	}
 
-//Movement
-	public void keyPressed(KeyEvent e) {
+//new Movement
+	public void moveLR(){
+		x+=dx;
+	}
+	public void moveUD(){
+		y+=dy;
+	}
+	
+	public void setdx(int newdx){
+		dx=newdx;
+	}
+	public void setdy(int newdy){
+		dy=newdy;
+	}
+	
+	//old MOVEMT
+	/*public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_LEFT)
-			x-=10;
+			dx=10;
+			x+=dx;
 
 		if (key == KeyEvent.VK_RIGHT)
 			x+=10;
@@ -64,7 +80,7 @@ public class Figur {
 		if (key == KeyEvent.VK_DOWN)
 				dx = 0;
 
-	}
+	}*/
 	
 	
 }

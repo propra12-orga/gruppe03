@@ -18,6 +18,7 @@ public class Board extends JPanel implements ActionListener {
 	Timer time;
 	int [][]feld= new int[9][6];
 	boolean ini;
+	int m; //movementreichweite
 
 	public Board() {
 		
@@ -29,7 +30,7 @@ public class Board extends JPanel implements ActionListener {
 					feld [in][jn]=1;
 			}
 		}
-		
+		m=4; //movementreichweite
 		bomber1 = new Figur(0,0);
 		addKeyListener(new AL());
 		setFocusable(true);
@@ -53,6 +54,9 @@ public class Board extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		
+		bomber1.moveLR(); 	// damit immer die position nachgefragt wird
+		bomber1.moveUD();
 		repaint();
 	}
 	
@@ -60,8 +64,6 @@ public class Board extends JPanel implements ActionListener {
 	public void paint(Graphics g) {
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
-
-		
 		
 		g2d.drawImage(img, 0, 0, null);
 		for (int i =0; i<9; i++){
@@ -82,7 +84,7 @@ public class Board extends JPanel implements ActionListener {
 		feld[x/100][y/100]=10;
 		
 	}
-	
+/* OLD KEY MOVEMNT
 	private class AL extends KeyAdapter {
 		public void keyReleased(KeyEvent e) {
 			bomber1.keyReleased(e);
@@ -94,7 +96,42 @@ public class Board extends JPanel implements ActionListener {
 	//		if (key == KeyEvent.VK_SPACE)
 		//		setBomb(bomber1.getX(),bomber1.getY(),bomber1.radi);
 		}
-	}
-
+	}*/
 	
+//New key Movement
+	private class AL extends KeyAdapter {	
+	public void keyPressed(KeyEvent e) {
+		int key = e.getKeyCode();
+
+		if (key == KeyEvent.VK_LEFT){
+			bomber1.setdx(-m);
+		//	bomber1.moveLR();
+		}else if (key == KeyEvent.VK_RIGHT){
+			bomber1.setdx(m);
+			//bomber1.moveLR();
+		}else if (key == KeyEvent.VK_UP){
+			bomber1.setdy(-m);
+			//bomber1.moveUD();
+		}else if (key == KeyEvent.VK_DOWN){
+			bomber1.setdy(m);
+			//bomber1.moveUD();
+			}		
+	}	
+
+	public void keyReleased(KeyEvent e) {
+		int key = e.getKeyCode();
+
+		if (key == KeyEvent.VK_LEFT)
+			bomber1.setdx(0);
+
+		if (key == KeyEvent.VK_RIGHT)
+			bomber1.setdx(0);	
+		
+		if (key == KeyEvent.VK_UP)
+			bomber1.setdy(0);
+
+		if (key == KeyEvent.VK_DOWN)
+			bomber1.setdy(0);
+	}
+	} 
 }
