@@ -51,40 +51,5 @@ public class Figur {
 	public void setdy(int newdy){
 		dy=newdy;
 	}
-	
-	//old MOVEMT
-	/*public void keyPressed(KeyEvent e) {
-		int key = e.getKeyCode();
-		if (key == KeyEvent.VK_LEFT)
-			dx=10;
-			x+=dx;
-
-		if (key == KeyEvent.VK_RIGHT)
-			x+=10;
-	
-		if (key == KeyEvent.VK_UP)
-			y-=10;
-
-		if (key == KeyEvent.VK_DOWN)
-			y += 10;			
-	}	
-
-	public void keyReleased(KeyEvent e) {
-		int key = e.getKeyCode();
-
-		if (key == KeyEvent.VK_LEFT)
-			dx = 0;
-
-		if (key == KeyEvent.VK_RIGHT)
-			dx = 0;		
 		
-		if (key == KeyEvent.VK_UP)
-				dx = 0;
-
-		if (key == KeyEvent.VK_DOWN)
-				dx = 0;
-
-	}*/
-	
-	
 }

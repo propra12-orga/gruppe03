@@ -85,23 +85,13 @@ public class Board extends JPanel implements ActionListener {
 	}
 
 	public void setBomb(int x, int y, int radi) {
-		feld[(30+x)/60][(30+y)/60]=10; // setzt den feld array auf 10=Bombe; 30 für mittelpunkt
+		// setzt den feld array auf 10=Bombe; 30 für mittelpunkt
+		int meinfeld = feld[(30+x)/60][(30+y)/60];
+		if (meinfeld ==0)
+			feld[(30+x)/60][(30+y)/60]=10;
+		
 		
 	}
-/* OLD KEY MOVEMNT
-	private class AL extends KeyAdapter {
-		public void keyReleased(KeyEvent e) {
-			bomber1.keyReleased(e);
-		}
-
-		public void keyPressed(KeyEvent e) {
-			int key = e.getKeyCode();
-			bomber1.keyPressed(e);
-	//		if (key == KeyEvent.VK_SPACE)
-		//		setBomb(bomber1.getX(),bomber1.getY(),bomber1.radi);
-		}
-	}*/
-	
 // KEY ABFRAGE
 	private class AL extends KeyAdapter {	
 	public void keyPressed(KeyEvent e) {
@@ -109,16 +99,12 @@ public class Board extends JPanel implements ActionListener {
 
 		if (key == KeyEvent.VK_LEFT){
 			bomber1.setdx(-m);
-		//	bomber1.moveLR();
 		}else if (key == KeyEvent.VK_RIGHT){
 			bomber1.setdx(m);
-			//bomber1.moveLR();
 		}else if (key == KeyEvent.VK_UP){
 			bomber1.setdy(-m);
-			//bomber1.moveUD();
 		}else if (key == KeyEvent.VK_DOWN){
 			bomber1.setdy(m);
-			//bomber1.moveUD();
 		}else if (key == KeyEvent.VK_SPACE)
 			{bomber1.setBomb();
 			setBomb(bomber1.getX(),bomber1.getY(),bomber1.getRadi());}
