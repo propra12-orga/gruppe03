@@ -31,7 +31,7 @@ public class Board extends JPanel implements ActionListener {
 					feld [in][jn]=0;
 			}
 		}
-		m=4; //movementreichweite
+		m=10; //movementreichweite
 		bomber1 = new Figur(0,0);
 		addKeyListener(new AL());
 		setFocusable(true);
@@ -45,10 +45,10 @@ public class Board extends JPanel implements ActionListener {
 		ImageIcon i3 = new ImageIcon("block1.jpg");
 		block1 = i3.getImage();
 		
-		ImageIcon i4 = new ImageIcon("bombe2.png");
+		ImageIcon i4 = new ImageIcon("bombe.jpg");
 		bomb = i4.getImage();
 		
-		time = new Timer(5, this);
+		time = new Timer(20, this);
 		time.start();
 		
 		
@@ -85,7 +85,7 @@ public class Board extends JPanel implements ActionListener {
 	}
 
 	public void setBomb(int x, int y, int radi) {
-		feld[x/60][y/60]=10; // setzt den feld array auf 10=Bombe
+		feld[(30+x)/60][(30+y)/60]=10; // setzt den feld array auf 10=Bombe; 30 für mittelpunkt
 		
 	}
 /* OLD KEY MOVEMNT
@@ -119,7 +119,9 @@ public class Board extends JPanel implements ActionListener {
 		}else if (key == KeyEvent.VK_DOWN){
 			bomber1.setdy(m);
 			//bomber1.moveUD();
-			}		
+		}else if (key == KeyEvent.VK_SPACE)
+			{bomber1.setBomb();
+			setBomb(bomber1.getX(),bomber1.getY(),bomber1.getRadi());}
 	}	
 
 	public void keyReleased(KeyEvent e) {

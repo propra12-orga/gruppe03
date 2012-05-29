@@ -26,12 +26,16 @@ public class Figur {
 	public Image getImage(){
 		return guy;
 	}
-	//bombe legen
-	public void setBomb(){
-		if (maxBombs > bombsWorking){
-			Bombe b = new Bombe(x,y,radi);
-		}
+	public int getRadi(){
+		return radi;
 	}
+	//bombe legen
+	public boolean setBomb(){
+		if (maxBombs > bombsWorking)
+			return true;
+		else
+			return false;
+	}	
 
 //new Movement
 	public void moveLR(){
