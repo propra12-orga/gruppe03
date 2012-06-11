@@ -15,10 +15,10 @@ public class Figur {
 		y=yPosition;
 		maxBombs=1;
 		if (Bild==1){
-		ImageIcon i = new ImageIcon("link.png");
+		ImageIcon i = new ImageIcon("bilder/link.png");
 		guy = i.getImage();
 		}else if (Bild==2){
-			ImageIcon i = new ImageIcon("huhn.png");
+			ImageIcon i = new ImageIcon("bilder/huhn.png");
 		guy = i.getImage();
 		}
 	}

@@ -27,16 +27,16 @@ public class Board extends JPanel implements ActionListener {
 		addKeyListener(new AL());
 		setFocusable(true);
 
-		ImageIcon i1 = new ImageIcon("feld.png");
+		ImageIcon i1 = new ImageIcon("bilder/feld.png");
 		img = i1.getImage();
 
-		ImageIcon i2 = new ImageIcon("block0.jpg");
+		ImageIcon i2 = new ImageIcon("bilder/block0.jpg");
 		block0 = i2.getImage();
 
-		ImageIcon i3 = new ImageIcon("block1.jpg");
+		ImageIcon i3 = new ImageIcon("bilder/block1.jpg");
 		block1 = i3.getImage();
 
-		ImageIcon i4 = new ImageIcon("bombe.jpg");
+		ImageIcon i4 = new ImageIcon("bilder/bombe.jpg");
 		bomb = i4.getImage();
 
 		time = new Timer(5, this);
