@@ -8,8 +8,7 @@ public class Field {
 		for (int in = 0; in < 15; in++) {
 			for (int jn = 0; jn < 11; jn++) {
 
-				if (in == 0 || jn == 0 || in == 14 || jn == 10
-						|| (in % 2 == 0 && jn % 2 == 0))
+				if (in == 0 || jn == 0 || in == 14 || jn == 10|| (in % 2 == 0 && jn % 2 == 0))
 					feld[in][jn] = 1;
 				else
 					feld[in][jn] = 0;

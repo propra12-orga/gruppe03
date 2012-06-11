@@ -31,9 +31,9 @@ public class Figur {
 		return radi;
 	}
 	//bombe legen
-	public void setBomb(){
-		if (maxBombs > bombsWorking)
-		{			
+	public void setBomb(Field feld){
+		if (maxBombs > bombsWorking && feld.getArry(gethauptarrayX(), gethauptarrayY())==0)
+		{ 	feld.setArry(gethauptarrayX(), gethauptarrayY(),10);
 		}
 	}	
 

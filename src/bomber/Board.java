@@ -23,7 +23,7 @@ public class Board extends JPanel implements ActionListener {
 	public Board() {
 		m = 5; // movementreichweite
 		bomber1 = new Figur(60, 60);
-		bomber2 = new Figur (60*12,600);
+		bomber2 = new Figur (60*12,60*8);
 		addKeyListener(new AL());
 		setFocusable(true);
 
@@ -94,7 +94,7 @@ public class Board extends JPanel implements ActionListener {
 			} else if (key == KeyEvent.VK_DOWN) {
 				bomber1.setdy(m);
 			} else if (key == KeyEvent.VK_SPACE) {
-				bomber1.setBomb();
+				bomber1.setBomb(spielfeld);
 			
 			}
 		}
