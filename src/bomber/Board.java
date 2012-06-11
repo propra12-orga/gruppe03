@@ -13,25 +13,14 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Board extends JPanel implements ActionListener {
-	Figur bomber1;
+	Figur bomber1, bomber2;
 	public Image img, block0, block1, bomb;
 	Timer time;
-	int[][] feld = new int[15][11];
+	public Field spielfeld = new Field();
 	boolean ini;
 	int m; // movementreichweite
 
 	public Board() {
-		// Initialisiere Feld
-		for (int in = 0; in < 15; in++) {
-			for (int jn = 0; jn < 11; jn++) {
-
-				if (in == 0 || jn == 0 || in == 14 || jn == 10
-						|| (in % 2 == 0 && jn % 2 == 0))
-					feld[in][jn] = 1;
-				else
-					feld[in][jn] = 0;
-			}
-		}
 		m = 5; // movementreichweite
 		bomber1 = new Figur(60, 60);
 		addKeyListener(new AL());
@@ -62,59 +51,9 @@ public class Board extends JPanel implements ActionListener {
 		int dx1 = bomber1.getdx();
 		int dy1 = bomber1.getdy();
 
-		// Hauptarray der Figur
-		int x1feld = (x1 + 30) / 60;
-		int y1feld = (y1 + 30) / 60;
 
-		// Abfrage rechts links
-		if (dx1 != 0) {
-			if (y1 % 60 > 0 && y1 % 60 < 30) { // Zentralisierung
-				bomber1.setdy(-m);
-				bomber1.moveUD();
-				bomber1.setdy(0);
-			} else if (y1 % 60 >= 30 && y1 % 60 < 60) {
-				bomber1.setdy(m);
-				bomber1.moveUD();
-				bomber1.setdy(0);
-			} else if (y1 % 60 == 0) {
-				// Movement
-				if (dx1 > 0) {
-					if (feld[x1feld + 1][y1feld] == 0 || x1 % 60 != 0) {
-						bomber1.moveLR();
-					}
-
-				} else if (dx1 < 0) {
-					if (feld[x1feld - 1][y1feld] == 0 || x1 % 60 != 0) {
-						bomber1.moveLR();
-					}
-				}
-			}
-		}
-		// Abfrage unten oben
-		if (dy1 != 0) {
-			if (x1 % 60 > 0 && x1 % 60 < 30) { // Zentralisierung
-				bomber1.setdx(-m);
-				bomber1.moveLR();
-				bomber1.setdx(0);
-			} else if (x1 % 60 >= 30 && x1 % 60 < 60) {
-				bomber1.setdx(m);
-				bomber1.moveLR();
-				bomber1.setdx(0);
-			} else if (x1 % 60 == 0) {
-				// Movement
-				if (dy1 > 0) {
-					if (feld[x1feld][y1feld + 1] == 0 || y1 % 60 != 0) {
-						bomber1.moveUD();
-					}
-
-				} else if (dy1 < 0) {
-					if (feld[x1feld][y1feld - 1] == 0 || y1 % 60 != 0) {
-						bomber1.moveUD();
-					}
-				}
-			}
-		}
-
+		bomber1.Perma(spielfeld);
+		
 		repaint();
 	}
 
@@ -129,11 +68,11 @@ public class Board extends JPanel implements ActionListener {
 		for (int i = 0; i < 15; i++) {
 			for (int j = 0; j < 11; j++) {
 
-				if (feld[i][j] == 0) {
+				if (spielfeld.getArry(i, j)== 0) {
 					g2d.drawImage(block0, i * blocksize, j * blocksize, null);
-				} else if (feld[i][j] == 1) {
+				} else if (spielfeld.getArry(i, j) == 1) {
 					g2d.drawImage(block1, i * blocksize, j * blocksize, null);
-				} else if (feld[i][j] == 10) {
+				} else if (spielfeld.getArry(i, j) == 10) {
 					g2d.drawImage(bomb, i * blocksize, j * blocksize, null);
 				}
 			}
@@ -143,9 +82,9 @@ public class Board extends JPanel implements ActionListener {
 
 	public void setBomb(int x, int y, int radi) {
 		// setzt den feld array auf 10=Bombe; 30 für mittelpunkt
-		int meinfeld = feld[(30 + x) / 60][(30 + y) / 60];
-		if (meinfeld == 0)
-			feld[(30 + x) / 60][(30 + y) / 60] = 10;
+	//	int meinfeld = feld[(30 + x) / 60][(30 + y) / 60];
+		//if (meinfeld == 0)
+			//feld[(30 + x) / 60][(30 + y) / 60] = 10;
 
 	}
 

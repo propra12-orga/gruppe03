@@ -6,10 +6,11 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 
 public class Figur {
-	int x, y,dx,dy,radi,maxBombs,bombsWorking;
+	int m,x, y,dx,dy,radi,maxBombs,bombsWorking;
 	Image guy;
 	
 	public Figur(int xPosition,int yPosition){
+		m = 5; // movementreichweite
 		x=xPosition;
 		y=yPosition;
 		maxBombs=1;
@@ -30,14 +31,13 @@ public class Figur {
 		return radi;
 	}
 	//bombe legen
-	public boolean setBomb(){
+	public void setBomb(){
 		if (maxBombs > bombsWorking)
-			return true;
-		else
-			return false;
+		{			
+		}
 	}	
 
-//new Movement
+// Movement
 	public void moveLR(){
 		x+=dx;
 	}
@@ -56,5 +56,68 @@ public class Figur {
 	}	
 	public int getdx(){
 		return dx;
-	}	
+	}
+	// Hauptarray der Figur
+	public int gethauptarrayX(){	
+	int posx = (x + 30) / 60;
+	return posx;
+	}
+	public int gethauptarrayY(){	
+		int posy = (y + 30) / 60;
+		return posy;
+	}
+	
+
+//Smart Moving Vers 1.0
+// Abfrage rechts links
+	public void Perma(Field feld){
+			if (dx != 0) {
+				if (y % 60 > 0 && y % 60 < 30) { // Zentralisierung
+					setdy(-m);
+					moveUD();
+					setdy(0);
+				} else if (y % 60 >= 30 && y % 60 < 60) {
+					setdy(m);
+					moveUD();
+					setdy(0);
+				} else if (y % 60 == 0) {
+					// Movement
+					if (dx > 0) {
+						if (feld.getArry(gethauptarrayX() + 1,gethauptarrayY()) == 0 || x % 60 != 0) {
+							moveLR();
+						}
+
+					} else if (dx < 0) {
+						if (feld.getArry(gethauptarrayX() - 1,gethauptarrayY()) == 0 || x % 60 != 0) {
+							moveLR();
+						}
+					}
+				}
+			}
+			// Abfrage unten oben
+			if (dy != 0) {
+				if (x % 60 > 0 && x % 60 < 30) { // Zentralisierung
+					setdx(-m);
+					moveLR();
+					setdx(0);
+				} else if (x % 60 >= 30 && x % 60 < 60) {
+					setdx(m);
+					moveLR();
+					setdx(0);
+				} else if (x % 60 == 0) {
+					// Movement
+					if (dy > 0) {
+						if (feld.getArry(gethauptarrayX(),gethauptarrayY() + 1) == 0 || y % 60 != 0) {
+							moveUD();
+						}
+
+					} else if (dy < 0) {
+						if (feld.getArry(gethauptarrayX(),gethauptarrayY() - 1) == 0 || y % 60 != 0) {
+							moveUD();
+						}
+					}
+				}
+			}
+
+	}
 }
