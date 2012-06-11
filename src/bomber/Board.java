@@ -23,6 +23,7 @@ public class Board extends JPanel implements ActionListener {
 	public Board() {
 		m = 5; // movementreichweite
 		bomber1 = new Figur(60, 60);
+		bomber2 = new Figur (60*12,600);
 		addKeyListener(new AL());
 		setFocusable(true);
 
@@ -45,12 +46,6 @@ public class Board extends JPanel implements ActionListener {
 
 	// Spielfeld größe 15x11
 	public void actionPerformed(ActionEvent e) {
-		// damit immer die position nachgefragt wird
-		int x1 = bomber1.getX();
-		int y1 = bomber1.getY();
-		int dx1 = bomber1.getdx();
-		int dy1 = bomber1.getdy();
-
 
 		bomber1.Perma(spielfeld);
 		
@@ -80,13 +75,7 @@ public class Board extends JPanel implements ActionListener {
 		g2d.drawImage(bomber1.getImage(), bomber1.getX(), bomber1.getY(), null);
 	}
 
-	public void setBomb(int x, int y, int radi) {
-		// setzt den feld array auf 10=Bombe; 30 für mittelpunkt
-	//	int meinfeld = feld[(30 + x) / 60][(30 + y) / 60];
-		//if (meinfeld == 0)
-			//feld[(30 + x) / 60][(30 + y) / 60] = 10;
 
-	}
 
 	// KEY ABFRAGE
 
@@ -106,7 +95,7 @@ public class Board extends JPanel implements ActionListener {
 				bomber1.setdy(m);
 			} else if (key == KeyEvent.VK_SPACE) {
 				bomber1.setBomb();
-				setBomb(bomber1.getX(), bomber1.getY(), bomber1.getRadi());
+			
 			}
 		}
 
