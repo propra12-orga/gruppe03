@@ -13,6 +13,7 @@ public class Figur {
 		x=xPosition;
 		y=yPosition;
 		maxBombs=1;
+		radi=1;
 		if (Bild==1){
 		ImageIcon i = new ImageIcon("bilder/link.png");
 		guy = i.getImage();
