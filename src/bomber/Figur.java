@@ -1,7 +1,6 @@
 package bomber;
 
 import java.awt.Image;
-import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 
@@ -37,11 +36,15 @@ public class Figur {
 	}
 	//bombe legen
 	public void setBomb(Field feld){
-		if (maxBombs > bombsWorking && feld.getArry(gethauptarrayX(), gethauptarrayY())==0)
-		{ 	feld.setArry(gethauptarrayX(), gethauptarrayY(),10);
+		if (maxBombs > bombsWorking && feld.getArry(gethauptarrayX(), gethauptarrayY())==0){
+			feld.setArry(gethauptarrayX(), gethauptarrayY(),10);
+			Thread bombe = new Thread(new Bombe(gethauptarrayX(),gethauptarrayY(),radi,feld));
+			bombe.start();
 		}
 	}	
 
+	
+	
 // Movement
 	public void moveLR(){
 		x+=dx;
@@ -71,7 +74,6 @@ public class Figur {
 		int posy = (y + 30) / 60;
 		return posy;
 	}
-	
 
 //Smart Moving Vers 1.0
 // Abfrage rechts links

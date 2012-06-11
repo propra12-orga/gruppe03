@@ -1,38 +1,35 @@
 package bomber;
 
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
-
-public class Bombe {
-	Image bomb;
+public class Bombe implements Runnable{
 	int r,x,y;
-	
-	public Bombe(int xPosition,int yPosition,int radius){
-		ImageIcon i = new ImageIcon("bombe2.png");
-		bomb = i.getImage();
+	Field feld;
+	public Bombe(int xPosition,int yPosition,int radius,Field feld){
 		r = radius;
-		x=xPosition;
+		x=xPosition; //array posi
 		y=yPosition;
+		this.feld=feld;
 	}
+	
 	public int getX(){
 		return x;
 	}
 	public int getY(){
 		return y;
 	}	
-	public Image getImage(){
-		return bomb;
+
+	@Override
+	public void run() {
+		for (int i=0; i<10;i++){
+			if (feld.getArry(x, y)!=11){ //11explodierend !
+			}else{
+				explode();
+			}
+		}
+		explode();
 	}
-	 		  
-/*	public static void setBombe(int posx, int posy, int radius) {
-	    x = posx;
-	    y = posy;
-	    r = radius;
-	//    timerEnd = t;
-	  //  area.box[positionX][positionY].setBomb();
-	    //operating = true;
-	   // timeStart = (float)frameCount / FRAME_RATE;   
+
+	private void explode() {
 		
-	}*/
+		
+	}
 }
