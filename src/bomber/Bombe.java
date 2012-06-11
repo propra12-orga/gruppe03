@@ -19,28 +19,32 @@ public class Bombe implements Runnable{
 
 	@Override
 	public void run() {
-		for (int i=0; i<10;i++){
-			if (feld.getArry(x, y)!=11){ //11explodierend !
-			}else{
-				explode();
+		try{
+			for (int i=0; i<10;i++){
+					Thread.sleep(1000);
+					explode();
 			}
-		}
 		explode();
+		}catch(Exception e){}
 	}
 
 	public void explode() {
-		for (int i=1; i<=r;i++){
-			if (feld.getArry(x+i, y)==0){ //frei
-				feld.setArry(x+i, y, 11);
-			} 
-			if (feld.getArry(x-i, y)==0){
-				feld.setArry(x-i, y, 11);
-			} 
-			if (feld.getArry(x, y+i)==0){
-				feld.setArry(x, y+i, 11);
-			} 
-			if (feld.getArry(x, y-i)==0){
-				feld.setArry(x, y-i, 11);
+		for (int i=0; i<=r;i++){
+			if (i==0){
+				feld.setArry(x, y, 11);
+			}else{
+				if (feld.getArry(x+i, y)==0){ //frei
+					feld.setArry(x+i, y, 11);
+				} 
+				if (feld.getArry(x-i, y)==0){
+					feld.setArry(x-i, y, 11);
+				} 
+				if (feld.getArry(x, y+i)==0){
+					feld.setArry(x, y+i, 11);
+				} 
+				if (feld.getArry(x, y-i)==0){
+					feld.setArry(x, y-i, 11);
+				}
 			}
 		}
 	}
