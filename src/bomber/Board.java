@@ -22,8 +22,8 @@ public class Board extends JPanel implements ActionListener {
 
 	public Board() {
 		m = 5; // movementreichweite
-		bomber1 = new Figur(60, 60);
-		bomber2 = new Figur (60*12,60*8);
+		bomber1 = new Figur(60, 60,1);
+		bomber2 = new Figur (60*13,60*9,2);
 		addKeyListener(new AL());
 		setFocusable(true);
 
@@ -48,7 +48,7 @@ public class Board extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		bomber1.Perma(spielfeld);
-		
+		bomber2.Perma(spielfeld);
 		repaint();
 	}
 
@@ -73,6 +73,7 @@ public class Board extends JPanel implements ActionListener {
 			}
 		}
 		g2d.drawImage(bomber1.getImage(), bomber1.getX(), bomber1.getY(), null);
+		g2d.drawImage(bomber2.getImage(), bomber2.getX(), bomber2.getY(), null);
 	}
 
 

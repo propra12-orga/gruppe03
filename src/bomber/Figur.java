@@ -9,13 +9,18 @@ public class Figur {
 	int m,x, y,dx,dy,radi,maxBombs,bombsWorking;
 	Image guy;
 	
-	public Figur(int xPosition,int yPosition){
+	public Figur(int xPosition,int yPosition,int Bild){
 		m = 5; // movementreichweite
 		x=xPosition;
 		y=yPosition;
 		maxBombs=1;
+		if (Bild==1){
 		ImageIcon i = new ImageIcon("link.png");
 		guy = i.getImage();
+		}else if (Bild==2){
+			ImageIcon i = new ImageIcon("huhn.png");
+		guy = i.getImage();
+		}
 	}
 	
 	public int getX(){
