@@ -2,15 +2,9 @@ package bomber;
 
 import javax.swing.JFrame;
 
+public class Frame {
 
-public class Frame2 extends JFrame {
-	  
-	 
-
-
-public class Frame2 {
-
-	public Frame2(){
+	public Frame(){
 /*		JFrame menu = new JFrame();
 		menu.add(new Menu());
 		menu.setTitle("our Bombing Game 2 gud");
@@ -28,7 +22,7 @@ public class Frame2 {
 		frame.setLocationRelativeTo(null);
 	}
 	public static void main(String[] args){
-		new Frame2();
+		new Frame();
 	}
-}
+
 }

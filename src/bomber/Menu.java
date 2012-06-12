@@ -1,4 +1,4 @@
-package bomber;
+/*package bomber;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,7 +31,7 @@ import javax.swing.JButton;
      
         fileMenu.add(newAction);
         fileMenu.add(openAction);
-        fileMenu.add(exitAction); */
+        fileMenu.add(exitAction); 
       
         public class Menu extends JFrame{
         	  
