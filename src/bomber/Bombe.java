@@ -10,40 +10,35 @@ public class Bombe implements Runnable{
 		this.feld=feld;
 	}
 	
-	public int getX(){
-		return x;
-	}
-	public int getY(){
-		return y;
-	}	
-
 	@Override
 	public void run() {
 		try{
-			for (int i=0; i<10;i++){
-					Thread.sleep(1000);
-					explode();
-			}
-		explode();
+			Thread.sleep(1000);
+			explode();
 		}catch(Exception e){}
 	}
 
 	public void explode() {
 		for (int i=0; i<=r;i++){
 			if (i==0){
-				feld.setArry(x, y, 11);
+				Thread e1 = new Thread(new Explosion(x,y,feld));
+				e1.start();
 			}else{
 				if (feld.getArry(x+i, y)==0){ //frei
-					feld.setArry(x+i, y, 11);
+					Thread e1 = new Thread(new Explosion(x+1,y,feld));
+					e1.start();
 				} 
 				if (feld.getArry(x-i, y)==0){
-					feld.setArry(x-i, y, 11);
+					Thread e1 = new Thread(new Explosion(x-i,y,feld));
+					e1.start();
 				} 
 				if (feld.getArry(x, y+i)==0){
-					feld.setArry(x, y+i, 11);
+					Thread e1 = new Thread(new Explosion(x,y+i,feld));
+					e1.start();
 				} 
 				if (feld.getArry(x, y-i)==0){
-					feld.setArry(x, y-i, 11);
+					Thread e1 = new Thread(new Explosion(x,y-i,feld));
+					e1.start();
 				}
 			}
 		}
