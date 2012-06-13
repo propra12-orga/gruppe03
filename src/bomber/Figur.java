@@ -14,8 +14,9 @@ public class Figur {
 		isAlive = true;
 		x = xPosition;
 		y = yPosition;
-		maxBombs = 1;
-		radi = 1;
+		bombsWorking=0;
+		maxBombs = 3;
+		radi = 5;
 
 		ImageIcon i2 = new ImageIcon("bilder/dead.jpg");
 		dead = i2.getImage();
@@ -36,7 +37,19 @@ public class Figur {
 	public int getY() {
 		return y;
 	}
-
+	
+	public void setMaxBombs(int maxB){
+		if (maxB>0)
+		maxBombs=maxB;
+	}
+	public void bombsWorkingPlus(){
+		if (bombsWorking<maxBombs)
+			bombsWorking+=1;
+	}
+	public void bombsWorkingMinus(){
+		if (bombsWorking>0)
+			bombsWorking-=1;
+	}
 	public Image getImage() {
 		if (isAlive == true) {
 			return guy;
@@ -52,9 +65,9 @@ public class Figur {
 	// bombe legen
 	public void setBomb(Field feld) {
 		if (maxBombs > bombsWorking && feld.getArry(gethauptarrayX(), gethauptarrayY()) == 0) {
-			feld.setArry(gethauptarrayX(), gethauptarrayY(), 10);
-			Thread bombe = new Thread(new Bombe(gethauptarrayX(), gethauptarrayY(), radi, feld));
+			Thread bombe = new Thread(new Bombe(gethauptarrayX(), gethauptarrayY(), radi, feld, Figur.this));
 			bombe.start();
+			
 		}
 	}
 
