@@ -12,9 +12,10 @@ public class Field {
 					feld[in][jn] = 1;
 				else
 					feld[in][jn] = 0;
+				if(in%2==0 && jn%2==0 && in>3 && jn>3 &&in<9 && jn<9)
+					feld[in-1][jn-1] = 2;
 			}
 		}
-
 	} 
 	public int getArry(int i, int j){	
 		return feld[i][j];

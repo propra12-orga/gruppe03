@@ -13,13 +13,60 @@ public class Bombe implements Runnable{
 	@Override
 	public void run() {
 		try{
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			explode();
 		}catch(Exception e){}
 	}
 
 	public void explode() {
-		boolean obenfrei=true;
+		Thread e = new Thread(new Explosion(x,y,feld));
+		e.start();
+		for (int i=1; i<=3;i++){
+			if (feld.getArry(x+i,y)==0){
+				Thread e1 = new Thread(new Explosion(x+i,y,feld));
+				e1.start(); 
+			}else{
+				break;	
+			}
+		}
+		
+		for (int i=1; i<=3;i++){
+			if (feld.getArry(x-i,y)==0){
+				Thread e1 = new Thread(new Explosion(x-i,y,feld));
+				e1.start(); 
+			}else{
+				break;	
+			}
+		}
+		
+		for (int i=1; i<=3;i++){
+			if (feld.getArry(x,y+i)==0){
+				Thread e1 = new Thread(new Explosion(x,y+i,feld));
+				e1.start(); 
+			}else{
+				break;	
+			}
+		}
+		
+		for (int i=1; i<=3;i++){
+			if (feld.getArry(x,y-i)==0){
+				Thread e1 = new Thread(new Explosion(x,y-i,feld));
+				e1.start(); 
+			}else{
+				break;	
+			}
+		}
+		/*	if (feld.getArry(x-i,y)==0 || feld.getArry(x-i,y)==10){
+				Thread e1 = new Thread(new Explosion(x-i,y,feld));
+				e1.start(); }
+			if (feld.getArry(x,y+i)==0 || feld.getArry(x,y+i)==10){
+				Thread e1 = new Thread(new Explosion(x,y+i,feld));
+				e1.start(); }
+			if (feld.getArry(x,y-i)==0 || feld.getArry(x,y-i)==10){
+				Thread e1 = new Thread(new Explosion(x,y-i,feld));
+				e1.start(); }
+		}
+		/*boolean obenfrei=true;
 		boolean untenfrei=true;
 		boolean rechtsfrei=true; 
 		boolean linksfrei=true;
@@ -53,6 +100,6 @@ public class Bombe implements Runnable{
 			}else{
 				obenfrei=false;
 			}
-		}
+		}*/
 	}
 }

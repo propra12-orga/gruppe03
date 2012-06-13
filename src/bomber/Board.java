@@ -14,7 +14,7 @@ import javax.swing.Timer;
 
 public class Board extends JPanel implements ActionListener {
 	Figur bomber1, bomber2;
-	public Image img, block0, block1, bomb,explo;
+	public Image img, block0, block1, block2, bomb,explo;
 	Timer time;
 	public Field spielfeld = new Field();
 	boolean ini;
@@ -35,6 +35,9 @@ public class Board extends JPanel implements ActionListener {
 
 		ImageIcon i3 = new ImageIcon("bilder/block1.jpg");
 		block1 = i3.getImage();
+		
+		ImageIcon i3a = new ImageIcon("bilder/block2.jpg");
+		block2 = i3a.getImage();
 
 		ImageIcon i4 = new ImageIcon("bilder/blauebombe.png"); //bombe.jpg
 		bomb = i4.getImage();
@@ -70,6 +73,8 @@ public class Board extends JPanel implements ActionListener {
 					g2d.drawImage(block0, i * blocksize, j * blocksize, null);
 				} else if (spielfeld.getArry(i, j) == 1) {
 					g2d.drawImage(block1, i * blocksize, j * blocksize, null);
+				}else if (spielfeld.getArry(i, j) == 2) {
+					g2d.drawImage(block2, i * blocksize, j * blocksize, null);
 				} else if (spielfeld.getArry(i, j) == 10) {
 					g2d.drawImage(block0, i * blocksize, j * blocksize, null); //wegen transparenz
 					g2d.drawImage(bomb, i * blocksize, j * blocksize, null);
