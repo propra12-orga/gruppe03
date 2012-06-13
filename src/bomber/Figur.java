@@ -6,14 +6,20 @@ import javax.swing.ImageIcon;
 
 public class Figur {
 	int m,x, y,dx,dy,radi,maxBombs,bombsWorking;
-	Image guy;
+	Image guy,dead;
+	boolean isAlive;
 	
 	public Figur(int xPosition,int yPosition,int Bild){
 		m = 5; // movementreichweite
+		isAlive = true;
 		x=xPosition;
 		y=yPosition;
 		maxBombs=1;
 		radi=1;
+		
+		ImageIcon i2 = new ImageIcon("bilder/dead.jpg");
+		dead = i2.getImage();
+		
 		if (Bild==1){
 		ImageIcon i = new ImageIcon("bilder/link.png");
 		guy = i.getImage();
@@ -30,7 +36,11 @@ public class Figur {
 		return y;
 	}	
 	public Image getImage(){
+		if (isAlive==true){
 		return guy;
+		}else{
+			return dead;
+		}
 	}
 	public int getRadi(){
 		return radi;
@@ -79,6 +89,7 @@ public class Figur {
 //Smart Moving Vers 1.0
 // Abfrage rechts links
 	public void Perma(Field feld){
+		if ((feld.getArry(gethauptarrayX(),gethauptarrayY()) == 0|| feld.getArry(gethauptarrayX(),gethauptarrayY())==10) && isAlive==true){
 			if (dx != 0) {
 				if (y % 60 > 0 && y % 60 < 30) { // Zentralisierung
 					setdy(-m);
@@ -127,5 +138,9 @@ public class Figur {
 				}
 			}
 
+	}else{
+		isAlive=false;
+		
+	}
 	}
 }
