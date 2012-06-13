@@ -42,8 +42,8 @@ public class Board extends JPanel implements ActionListener {
 		ImageIcon i11 = new ImageIcon("bilder/explosion.jpg");
 		explo = i11.getImage();
 
-		ImageIcon i12 = new ImageIcon("bilder/");
-		explo = i12.getImage();
+		ImageIcon i12 = new ImageIcon("bilder/broeckel.jpg");
+		broeckel = i12.getImage();
 		
 		time = new Timer(5, this);
 		time.start();
@@ -80,6 +80,8 @@ public class Board extends JPanel implements ActionListener {
 					g2d.drawImage(bomb, i * blocksize, j * blocksize, null);
 				} else if (spielfeld.getArry(i, j) == 11) {
 					g2d.drawImage(explo, i * blocksize, j * blocksize, null);
+				}else if (spielfeld.getArry(i, j) == 12) {
+					g2d.drawImage(broeckel, i * blocksize, j * blocksize, null);
 				}
 			}
 		}

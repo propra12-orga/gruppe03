@@ -24,8 +24,7 @@ public class Field {
 					feld[in][jn] = 1;
 				else
 					feld[in][jn] = 0;
-				if(in==100)
-					feld[in-1][jn-1] = 2;
+					feld[3][3] = 2;
 			}
 		}
 	} 

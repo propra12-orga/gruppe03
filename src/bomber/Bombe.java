@@ -55,12 +55,14 @@ public class Bombe implements Runnable, ActionListener {
 			if (feld.isExplodierbar(x + i, y)) {
 				Thread e1 = new Thread(new Explosion(x + i, y, feld));
 				e1.start();
-			} else if (feld.isZerstoerar(x+i, y)){
-				Thread e2 = new Thread (new Broeckeln(x + i, y, feld));
-				e2.start();
+			} else {
+				if (feld.isZerstoerar(x+i, y)){
+					Thread e2 = new Thread (new Broeckeln(x + i, y, feld));
+					e2.start();
+					break;
+				}else{
+					break;}
 			}
-				break;
-			
 		}
 
 		for (int i = 1; i <= r; i++) {
@@ -68,7 +70,12 @@ public class Bombe implements Runnable, ActionListener {
 				Thread e1 = new Thread(new Explosion(x - i, y, feld));
 				e1.start();
 			} else {
-				break;
+				if (feld.isZerstoerar(x-i, y)){
+					Thread e2 = new Thread (new Broeckeln(x - i, y, feld));
+					e2.start();
+					break;
+				}else{
+					break;}
 			}
 		}
 
@@ -77,7 +84,12 @@ public class Bombe implements Runnable, ActionListener {
 				Thread e1 = new Thread(new Explosion(x, y + i, feld));
 				e1.start();
 			} else {
-				break;
+				if (feld.isZerstoerar(x, y+i)){
+					Thread e2 = new Thread (new Broeckeln(x , y+i, feld));
+					e2.start();
+					break;
+				}else{
+					break;}
 			}
 		}
 
@@ -86,7 +98,12 @@ public class Bombe implements Runnable, ActionListener {
 				Thread e1 = new Thread(new Explosion(x, y - i, feld));
 				e1.start();
 			} else {
-				break;
+				if (feld.isZerstoerar(x, y-i)){
+					Thread e2 = new Thread (new Broeckeln(x , y-i, feld));
+					e2.start();
+					break;
+				}else{
+					break;}
 			}
 		}
 	}
