@@ -1,7 +1,12 @@
 package bomber;
 
 public class Field {
-	
+/*Wertetabbele was wofür steht
+ * 0-9 blöcke
+ * 10-19 bomben
+ * 20-29 items
+ * 
+ */	
 	private int[][] feld = new int [15][11];
 	
 	public Field(){
@@ -12,7 +17,7 @@ public class Field {
 					feld[in][jn] = 1;
 				else
 					feld[in][jn] = 0;
-				if(in%2==0 && jn%2==0 && in>3 && jn>3 &&in<9 && jn<9)
+				if(in==100)
 					feld[in-1][jn-1] = 2;
 			}
 		}
@@ -27,6 +32,13 @@ public class Field {
 	public boolean isWalkable(int x, int y){
 		int wert =feld[x][y];
 		if (wert==0||wert==11)
+			return true;
+		else
+			return false;
+	}
+	public boolean isExplodierbar(int x, int y){
+		int wert =feld[x][y];
+		if (wert==0||wert==10||wert==11)
 			return true;
 		else
 			return false;

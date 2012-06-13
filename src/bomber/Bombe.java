@@ -26,9 +26,9 @@ public class Bombe implements Runnable, ActionListener {
 	}
 
 	private void Timerende() {
+		ende = true;
 		explode();
 		time.stop();
-		ende = true;
 		spieler.bombsWorkingMinus();
 	}
 
@@ -42,7 +42,7 @@ public class Bombe implements Runnable, ActionListener {
 				if (feld.getArry(x, y) != 10) {
 					Timerende();
 				}
-				Thread.sleep(20);
+				Thread.sleep(10);
 			}
 		} catch (Exception e) {
 		}
@@ -52,7 +52,7 @@ public class Bombe implements Runnable, ActionListener {
 		Thread e = new Thread(new Explosion(x, y, feld));
 		e.start();
 		for (int i = 1; i <= r; i++) {
-			if (feld.getArry(x + i, y) == 0 || feld.getArry(x + i, y) == 10) {
+			if (feld.isExplodierbar(x + i, y)) {
 				Thread e1 = new Thread(new Explosion(x + i, y, feld));
 				e1.start();
 			} else {
@@ -61,7 +61,7 @@ public class Bombe implements Runnable, ActionListener {
 		}
 
 		for (int i = 1; i <= r; i++) {
-			if (feld.getArry(x - i, y) == 0 || feld.getArry(x - i, y) == 10) {
+			if (feld.isExplodierbar(x-i, y)) {
 				Thread e1 = new Thread(new Explosion(x - i, y, feld));
 				e1.start();
 			} else {
@@ -70,7 +70,7 @@ public class Bombe implements Runnable, ActionListener {
 		}
 
 		for (int i = 1; i <= r; i++) {
-			if (feld.getArry(x, y + i) == 0 || feld.getArry(x, y+i) == 10) {
+			if (feld.isExplodierbar(x, y+i)) {
 				Thread e1 = new Thread(new Explosion(x, y + i, feld));
 				e1.start();
 			} else {
@@ -79,7 +79,7 @@ public class Bombe implements Runnable, ActionListener {
 		}
 
 		for (int i = 1; i <= r; i++) {
-			if (feld.getArry(x, y - i) == 0 || feld.getArry(x , y-i) == 10) {
+			if (feld.isExplodierbar(x, y-i)) {
 				Thread e1 = new Thread(new Explosion(x, y - i, feld));
 				e1.start();
 			} else {
