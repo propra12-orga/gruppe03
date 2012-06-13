@@ -5,91 +5,99 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class Figur {
-	int m,x, y,dx,dy,radi,maxBombs,bombsWorking;
-	Image guy,dead;
+	int m, x, y, dx, dy, radi, maxBombs, bombsWorking;
+	Image guy, dead;
 	boolean isAlive;
-	
-	public Figur(int xPosition,int yPosition,int Bild){
+
+	public Figur(int xPosition, int yPosition, int Bild) {
 		m = 5; // movementreichweite
 		isAlive = true;
-		x=xPosition;
-		y=yPosition;
-		maxBombs=1;
-		radi=1;
-		
+		x = xPosition;
+		y = yPosition;
+		maxBombs = 1;
+		radi = 1;
+
 		ImageIcon i2 = new ImageIcon("bilder/dead.jpg");
 		dead = i2.getImage();
-		
-		if (Bild==1){
-		ImageIcon i = new ImageIcon("bilder/link.png");
-		guy = i.getImage();
-		}else if (Bild==2){
+
+		if (Bild == 1) {
+			ImageIcon i = new ImageIcon("bilder/link.png");
+			guy = i.getImage();
+		} else if (Bild == 2) {
 			ImageIcon i = new ImageIcon("bilder/huhn.png");
-		guy = i.getImage();
+			guy = i.getImage();
 		}
 	}
-	
-	public int getX(){
+
+	public int getX() {
 		return x;
 	}
-	public int getY(){
+
+	public int getY() {
 		return y;
-	}	
-	public Image getImage(){
-		if (isAlive==true){
-		return guy;
-		}else{
+	}
+
+	public Image getImage() {
+		if (isAlive == true) {
+			return guy;
+		} else {
 			return dead;
 		}
 	}
-	public int getRadi(){
+
+	public int getRadi() {
 		return radi;
 	}
-	//bombe legen
-	public void setBomb(Field feld){
-		if (maxBombs > bombsWorking && feld.getArry(gethauptarrayX(), gethauptarrayY())==0){
-			feld.setArry(gethauptarrayX(), gethauptarrayY(),10);
-			Thread bombe = new Thread(new Bombe(gethauptarrayX(),gethauptarrayY(),radi,feld));
+
+	// bombe legen
+	public void setBomb(Field feld) {
+		if (maxBombs > bombsWorking && feld.getArry(gethauptarrayX(), gethauptarrayY()) == 0) {
+			feld.setArry(gethauptarrayX(), gethauptarrayY(), 10);
+			Thread bombe = new Thread(new Bombe(gethauptarrayX(), gethauptarrayY(), radi, feld));
 			bombe.start();
 		}
-	}	
+	}
 
-	
-	
-// Movement
-	public void moveLR(){
-		x+=dx;
+	// Movement
+	public void moveLR() {
+		x += dx;
 	}
-	public void moveUD(){
-		y+=dy;
+
+	public void moveUD() {
+		y += dy;
 	}
-	
-	public void setdx(int newdx){
-		dx=newdx;
+
+	public void setdx(int newdx) {
+		dx = newdx;
 	}
-	public void setdy(int newdy){
-		dy=newdy;
+
+	public void setdy(int newdy) {
+		dy = newdy;
 	}
-	public int getdy(){
+
+	public int getdy() {
 		return dy;
-	}	
-	public int getdx(){
+	}
+
+	public int getdx() {
 		return dx;
 	}
+
 	// Hauptarray der Figur
-	public int gethauptarrayX(){	
-	int posx = (x + 30) / 60;
-	return posx;
+	public int gethauptarrayX() {
+		int posx = (x + 30) / 60;
+		return posx;
 	}
-	public int gethauptarrayY(){	
+
+	public int gethauptarrayY() {
 		int posy = (y + 30) / 60;
 		return posy;
 	}
 
-//Smart Moving Vers 1.0
-// Abfrage rechts links
-	public void Perma(Field feld){
-		if ((feld.getArry(gethauptarrayX(),gethauptarrayY()) == 0|| feld.getArry(gethauptarrayX(),gethauptarrayY())==10) && isAlive==true){
+	// Smart Moving Vers 1.0
+	// Abfrage rechts links
+	public void Perma(Field feld) {
+		if ((feld.getArry(gethauptarrayX(), gethauptarrayY()) == 0 || feld.getArry(gethauptarrayX(), gethauptarrayY()) == 10) && isAlive == true) {
 			if (dx != 0) {
 				if (y % 60 > 0 && y % 60 < 30) { // Zentralisierung
 					setdy(-m);
@@ -102,12 +110,12 @@ public class Figur {
 				} else if (y % 60 == 0) {
 					// Movement
 					if (dx > 0) {
-						if (feld.getArry(gethauptarrayX() + 1,gethauptarrayY()) == 0 || x % 60 != 0) {
+						if (feld.getArry(gethauptarrayX() + 1, gethauptarrayY()) == 0 || x % 60 != 0) {
 							moveLR();
 						}
 
 					} else if (dx < 0) {
-						if (feld.getArry(gethauptarrayX() - 1,gethauptarrayY()) == 0 || x % 60 != 0) {
+						if (feld.getArry(gethauptarrayX() - 1, gethauptarrayY()) == 0 || x % 60 != 0) {
 							moveLR();
 						}
 					}
@@ -126,21 +134,21 @@ public class Figur {
 				} else if (x % 60 == 0) {
 					// Movement
 					if (dy > 0) {
-						if (feld.getArry(gethauptarrayX(),gethauptarrayY() + 1) == 0 || y % 60 != 0) {
+						if (feld.getArry(gethauptarrayX(), gethauptarrayY() + 1) == 0 || y % 60 != 0) {
 							moveUD();
 						}
 
 					} else if (dy < 0) {
-						if (feld.getArry(gethauptarrayX(),gethauptarrayY() - 1) == 0 || y % 60 != 0) {
+						if (feld.getArry(gethauptarrayX(), gethauptarrayY() - 1) == 0 || y % 60 != 0) {
 							moveUD();
 						}
 					}
 				}
 			}
 
-	}else{
-		isAlive=false;
-		
-	}
+		} else {
+			isAlive = false;
+
+		}
 	}
 }
