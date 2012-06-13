@@ -23,6 +23,14 @@ public class Field {
 	public void setArry(int i, int j, int wert){
 		feld[i][j]=wert;
 	}
+	
+	public boolean isWalkable(int x, int y){
+		int wert =feld[x][y];
+		if (wert==0||wert==11)
+			return true;
+		else
+			return false;
+	}
 }
 
 

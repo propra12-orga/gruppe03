@@ -73,15 +73,13 @@ public class Figur {
 		}
 	}
 
-	// Movement
+	// einfache Funktionen
 	public void moveLR() {
 		x += dx;
 	}
-
 	public void moveUD() {
 		y += dy;
 	}
-
 	public void setdxl(int newdx) {
 		dxl = newdx;
 	}
@@ -94,28 +92,23 @@ public class Figur {
 	private void setdy(int newdy){
 		dy=newdy;
 	}
-	
 	public void setdyl(int newdy) {
 		dyl = newdy;
 	}
-
 	public void setdyr(int newdy) {
 		dyr = newdy;
 	}
 	public int getdy() {
 		return dy;
 	}
-
 	public int getdx() {
 		return dx;
-	}
-
+	}	
 	// Hauptarray der Figur
 	public int gethauptarrayX() {
 		int posx = (x + 30) / 60;
 		return posx;
 	}
-
 	public int gethauptarrayY() {
 		int posy = (y + 30) / 60;
 		return posy;
@@ -139,12 +132,11 @@ public class Figur {
 				} else if (y % 60 == 0) {
 					// Movement
 					if (dx > 0) {
-						if (feld.getArry(gethauptarrayX() + 1, gethauptarrayY()) == 0 || x % 60 != 0) {
+						if (feld.isWalkable(gethauptarrayX() + 1, gethauptarrayY()) ||x % 60 != 0) {
 							moveLR();
 						}
-
 					} else if (dx < 0) {
-						if (feld.getArry(gethauptarrayX() - 1, gethauptarrayY()) == 0 || x % 60 != 0) {
+						if (feld.isWalkable(gethauptarrayX() - 1, gethauptarrayY()) || x % 60 != 0) {
 							moveLR();
 						}
 					}
@@ -163,21 +155,18 @@ public class Figur {
 				} else if (x % 60 == 0) {
 					// Movement
 					if (dy > 0) {
-						if (feld.getArry(gethauptarrayX(), gethauptarrayY() + 1) == 0 || y % 60 != 0) {
+						if (feld.isWalkable(gethauptarrayX(), gethauptarrayY() + 1) || y % 60 != 0) {
 							moveUD();
 						}
-
 					} else if (dy < 0) {
-						if (feld.getArry(gethauptarrayX(), gethauptarrayY() - 1) == 0 || y % 60 != 0) {
+						if (feld.isWalkable(gethauptarrayX(), gethauptarrayY() - 1) || y % 60 != 0) {
 							moveUD();
 						}
 					}
 				}
 			}
-
 		} else {
 			isAlive = false;
-
 		}
 	}
 }

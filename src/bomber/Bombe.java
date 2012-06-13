@@ -42,7 +42,7 @@ public class Bombe implements Runnable, ActionListener {
 				if (feld.getArry(x, y) != 10) {
 					Timerende();
 				}
-				Thread.sleep(50);
+				Thread.sleep(20);
 			}
 		} catch (Exception e) {
 		}

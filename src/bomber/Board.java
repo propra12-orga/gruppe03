@@ -101,7 +101,7 @@ public class Board extends JPanel implements ActionListener {
 				bomber1.setdyl(-m);
 			} else if (key == KeyEvent.VK_DOWN) {
 				bomber1.setdyr(m);
-			} else if (key == KeyEvent.VK_SPACE) {
+			} else if (key == KeyEvent.VK_CONTROL) {
 				bomber1.setBomb(spielfeld);
 			}
 
@@ -114,7 +114,7 @@ public class Board extends JPanel implements ActionListener {
 				bomber2.setdyl(-m);
 			} else if (key == KeyEvent.VK_S) {
 				bomber2.setdyr(m);
-			} else if (key == KeyEvent.VK_CONTROL) {
+			} else if (key == KeyEvent.VK_SPACE) {
 				bomber2.setBomb(spielfeld);
 			}
 		}
