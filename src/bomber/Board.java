@@ -94,26 +94,26 @@ public class Board extends JPanel implements ActionListener {
 			int key = e.getKeyCode();
 			// bomber1
 			if (key == KeyEvent.VK_LEFT) {
-				bomber1.setdx(-m);
+				bomber1.setdxl(-m);
 			} else if (key == KeyEvent.VK_RIGHT) {
-				bomber1.setdx(m);
+				bomber1.setdxr(m);
 			} else if (key == KeyEvent.VK_UP) {
-				bomber1.setdy(-m);
+				bomber1.setdyl(-m);
 			} else if (key == KeyEvent.VK_DOWN) {
-				bomber1.setdy(m);
+				bomber1.setdyr(m);
 			} else if (key == KeyEvent.VK_SPACE) {
 				bomber1.setBomb(spielfeld);
 			}
 
 			// bomber2
 			if (key == KeyEvent.VK_A) {
-				bomber2.setdx(-m);
+				bomber2.setdxl(-m);
 			} else if (key == KeyEvent.VK_D) {
-				bomber2.setdx(m);
+				bomber2.setdxr(m);
 			} else if (key == KeyEvent.VK_W) {
-				bomber2.setdy(-m);
+				bomber2.setdyl(-m);
 			} else if (key == KeyEvent.VK_S) {
-				bomber2.setdy(m);
+				bomber2.setdyr(m);
 			} else if (key == KeyEvent.VK_CONTROL) {
 				bomber2.setBomb(spielfeld);
 			}
@@ -123,22 +123,22 @@ public class Board extends JPanel implements ActionListener {
 			int key = e.getKeyCode();
 			// bomber1
 			if (key == KeyEvent.VK_LEFT)
-				bomber1.setdx(0);
+				bomber1.setdxl(0);
 			if (key == KeyEvent.VK_RIGHT)
-				bomber1.setdx(0);
+				bomber1.setdxr(0);
 			if (key == KeyEvent.VK_UP)
-				bomber1.setdy(0);
+				bomber1.setdyl(0);
 			if (key == KeyEvent.VK_DOWN)
-				bomber1.setdy(0);
+				bomber1.setdyr(0);
 			// bomber2
 			if (key == KeyEvent.VK_A)
-				bomber2.setdx(0);
+				bomber2.setdxl(0);
 			if (key == KeyEvent.VK_D)
-				bomber2.setdx(0);
+				bomber2.setdxr(0);
 			if (key == KeyEvent.VK_W)
-				bomber2.setdy(0);
+				bomber2.setdyl(0);
 			if (key == KeyEvent.VK_S)
-				bomber2.setdy(0);
+				bomber2.setdyr(0);
 		}
 	}
 }

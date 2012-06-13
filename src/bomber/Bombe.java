@@ -88,3 +88,5 @@ public class Bombe implements Runnable, ActionListener {
 		}
 	}
 }
+//public void hilf(int i, int j){
+//	if feld.getArry(i, j)==0 ||}

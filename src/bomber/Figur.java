@@ -5,7 +5,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class Figur {
-	private int m, x, y, dx, dy, radi, maxBombs, bombsWorking;
+	private int m, x, y, dx,dxl,dxr, dy,dyl,dyr, radi, maxBombs, bombsWorking;
 	private Image guy, dead;
 	private boolean isAlive;
 
@@ -17,7 +17,10 @@ public class Figur {
 		bombsWorking=0;
 		maxBombs = 3;
 		radi = 5;
-
+		dxl=0;
+		dxr=0;
+		dyl=0;
+		dxl=0;
 		ImageIcon i2 = new ImageIcon("bilder/dead.jpg");
 		dead = i2.getImage();
 
@@ -79,14 +82,26 @@ public class Figur {
 		y += dy;
 	}
 
-	public void setdx(int newdx) {
-		dx = newdx;
+	public void setdxl(int newdx) {
+		dxl = newdx;
+	}
+	public void setdxr(int newdx) {
+		dxr = newdx;
+	}
+	private void setdx(int newdx){
+		dx=newdx;
+	}
+	private void setdy(int newdy){
+		dy=newdy;
+	}
+	
+	public void setdyl(int newdy) {
+		dyl = newdy;
 	}
 
-	public void setdy(int newdy) {
-		dy = newdy;
+	public void setdyr(int newdy) {
+		dyr = newdy;
 	}
-
 	public int getdy() {
 		return dy;
 	}
@@ -109,6 +124,8 @@ public class Figur {
 	// Smart Moving Vers 1.0
 	// Abfrage rechts links
 	public void Perma(Field feld) {
+		dx=dxr+dxl;
+		dy=dyr+dyl;
 		if ((feld.getArry(gethauptarrayX(), gethauptarrayY()) == 0 || feld.getArry(gethauptarrayX(), gethauptarrayY()) == 10) && isAlive == true) {
 			if (dx != 0) {
 				if (y % 60 > 0 && y % 60 < 30) { // Zentralisierung
