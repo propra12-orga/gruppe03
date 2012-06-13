@@ -6,6 +6,13 @@ public class Field {
  * 10-19 bomben
  * 20-29 items
  * 
+ * 0 frei
+ * 1 unzerstörbar
+ * 2 zerstörbar
+ * 10 bombe 
+ * 11 explosion
+ * 12 broeckeln
+ * 
  */	
 	private int[][] feld = new int [15][11];
 	
@@ -39,6 +46,13 @@ public class Field {
 	public boolean isExplodierbar(int x, int y){
 		int wert =feld[x][y];
 		if (wert==0||wert==10||wert==11)
+			return true;
+		else
+			return false;
+	}
+	public boolean isZerstoerar(int x, int y){
+		int wert =feld[x][y];
+		if (wert==2)
 			return true;
 		else
 			return false;

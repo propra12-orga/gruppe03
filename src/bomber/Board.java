@@ -14,7 +14,7 @@ import javax.swing.Timer;
 
 public class Board extends JPanel implements ActionListener {
 	private Figur bomber1, bomber2;
-	private Image img, block0, block1, block2, bomb, explo;
+	private Image block0, block1, block2, bomb, explo, broeckel;
 	private Timer time;
 	private  Field spielfeld = new Field();
 	private int m; // movementreichweite
@@ -26,24 +26,25 @@ public class Board extends JPanel implements ActionListener {
 		addKeyListener(new AL());
 		setFocusable(true);
 
-		ImageIcon i1 = new ImageIcon("bilder/feld.png");
-		img = i1.getImage();
 
-		ImageIcon i2 = new ImageIcon("bilder/block0.jpg");
-		block0 = i2.getImage();
+		ImageIcon i0 = new ImageIcon("bilder/block0.jpg");
+		block0 = i0.getImage();
 
-		ImageIcon i3 = new ImageIcon("bilder/block1.jpg");
-		block1 = i3.getImage();
+		ImageIcon i1 = new ImageIcon("bilder/block1.jpg");
+		block1 = i1.getImage();
 
-		ImageIcon i3a = new ImageIcon("bilder/block2.jpg");
-		block2 = i3a.getImage();
+		ImageIcon i2 = new ImageIcon("bilder/block2.jpg");
+		block2 = i2.getImage();
 
-		ImageIcon i4 = new ImageIcon("bilder/blauebombe.png"); // bombe.jpg
-		bomb = i4.getImage();
+		ImageIcon i10 = new ImageIcon("bilder/blauebombe.png"); // bombe.jpg
+		bomb = i10.getImage();
 
-		ImageIcon i5 = new ImageIcon("bilder/explosion.jpg");
-		explo = i5.getImage();
+		ImageIcon i11 = new ImageIcon("bilder/explosion.jpg");
+		explo = i11.getImage();
 
+		ImageIcon i12 = new ImageIcon("bilder/");
+		explo = i12.getImage();
+		
 		time = new Timer(5, this);
 		time.start();
 
@@ -63,7 +64,6 @@ public class Board extends JPanel implements ActionListener {
 
 		// Feld wird gemalt
 		// 0=block0(laufweg) 1=block1(fester block) 10=bombe
-		g2d.drawImage(img, 0, 0, null);
 		int blocksize = 60;
 		for (int i = 0; i < 15; i++) {
 			for (int j = 0; j < 11; j++) {

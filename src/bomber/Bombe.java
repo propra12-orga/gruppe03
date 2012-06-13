@@ -55,9 +55,12 @@ public class Bombe implements Runnable, ActionListener {
 			if (feld.isExplodierbar(x + i, y)) {
 				Thread e1 = new Thread(new Explosion(x + i, y, feld));
 				e1.start();
-			} else {
-				break;
+			} else if (feld.isZerstoerar(x+i, y)){
+				Thread e2 = new Thread (new Broeckeln(x + i, y, feld));
+				e2.start();
 			}
+				break;
+			
 		}
 
 		for (int i = 1; i <= r; i++) {
