@@ -14,7 +14,7 @@ import javax.swing.Timer;
 
 public class Board extends JPanel implements ActionListener {
 	Figur bomber1, bomber2;
-	public Image img, block0, block1, block2, bomb,explo;
+	public Image img, block0, block1, block2, bomb, explo;
 	Timer time;
 	public Field spielfeld = new Field();
 	boolean ini;
@@ -22,8 +22,8 @@ public class Board extends JPanel implements ActionListener {
 
 	public Board() {
 		m = 5; // movementreichweite
-		bomber1 = new Figur(60, 60,1);
-		bomber2 = new Figur (60*13,60*9,2);
+		bomber1 = new Figur(60, 60, 1);
+		bomber2 = new Figur(60 * 13, 60 * 9, 2);
 		addKeyListener(new AL());
 		setFocusable(true);
 
@@ -35,13 +35,13 @@ public class Board extends JPanel implements ActionListener {
 
 		ImageIcon i3 = new ImageIcon("bilder/block1.jpg");
 		block1 = i3.getImage();
-		
+
 		ImageIcon i3a = new ImageIcon("bilder/block2.jpg");
 		block2 = i3a.getImage();
 
-		ImageIcon i4 = new ImageIcon("bilder/blauebombe.png"); //bombe.jpg
+		ImageIcon i4 = new ImageIcon("bilder/blauebombe.png"); // bombe.jpg
 		bomb = i4.getImage();
-		
+
 		ImageIcon i5 = new ImageIcon("bilder/explosion.jpg");
 		explo = i5.getImage();
 
@@ -69,16 +69,17 @@ public class Board extends JPanel implements ActionListener {
 		for (int i = 0; i < 15; i++) {
 			for (int j = 0; j < 11; j++) {
 
-				if (spielfeld.getArry(i, j)== 0) {
+				if (spielfeld.getArry(i, j) == 0) {
 					g2d.drawImage(block0, i * blocksize, j * blocksize, null);
 				} else if (spielfeld.getArry(i, j) == 1) {
 					g2d.drawImage(block1, i * blocksize, j * blocksize, null);
-				}else if (spielfeld.getArry(i, j) == 2) {
+				} else if (spielfeld.getArry(i, j) == 2) {
 					g2d.drawImage(block2, i * blocksize, j * blocksize, null);
-				} else if (spielfeld.getArry(i, j) == 10) {
-					g2d.drawImage(block0, i * blocksize, j * blocksize, null); //wegen transparenz
+				} else if (spielfeld.getArry(i, j) == 10) { 
+					// wegen transparenz
+					g2d.drawImage(block0, i * blocksize, j * blocksize, null);
 					g2d.drawImage(bomb, i * blocksize, j * blocksize, null);
-				}else if (spielfeld.getArry(i, j) == 11) {
+				} else if (spielfeld.getArry(i, j) == 11) {
 					g2d.drawImage(explo, i * blocksize, j * blocksize, null);
 				}
 			}
@@ -87,14 +88,12 @@ public class Board extends JPanel implements ActionListener {
 		g2d.drawImage(bomber2.getImage(), bomber2.getX(), bomber2.getY(), null);
 	}
 
-
-
 	// KEY ABFRAGE
 
 	private class AL extends KeyAdapter {
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-//bomber1
+			// bomber1
 			if (key == KeyEvent.VK_LEFT) {
 				bomber1.setdx(-m);
 			} else if (key == KeyEvent.VK_RIGHT) {
@@ -106,8 +105,8 @@ public class Board extends JPanel implements ActionListener {
 			} else if (key == KeyEvent.VK_SPACE) {
 				bomber1.setBomb(spielfeld);
 			}
-			
-		//bomber2
+
+			// bomber2
 			if (key == KeyEvent.VK_A) {
 				bomber2.setdx(-m);
 			} else if (key == KeyEvent.VK_D) {
@@ -118,12 +117,12 @@ public class Board extends JPanel implements ActionListener {
 				bomber2.setdy(m);
 			} else if (key == KeyEvent.VK_CONTROL) {
 				bomber2.setBomb(spielfeld);
-			}			
+			}
 		}
 
 		public void keyReleased(KeyEvent e) {
 			int key = e.getKeyCode();
-		//bomber1
+			// bomber1
 			if (key == KeyEvent.VK_LEFT)
 				bomber1.setdx(0);
 			if (key == KeyEvent.VK_RIGHT)
@@ -132,7 +131,7 @@ public class Board extends JPanel implements ActionListener {
 				bomber1.setdy(0);
 			if (key == KeyEvent.VK_DOWN)
 				bomber1.setdy(0);
-		//bomber2
+			// bomber2
 			if (key == KeyEvent.VK_A)
 				bomber2.setdx(0);
 			if (key == KeyEvent.VK_D)
