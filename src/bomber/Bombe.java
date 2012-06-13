@@ -6,10 +6,10 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 public class Bombe implements Runnable, ActionListener {
-	int r, x, y, i;
-	Field feld;
-	Figur spieler;
-	Timer time;
+	private int r, x, y;
+	private Field feld;
+	private Figur spieler;
+	private Timer time;
 	boolean ende;
 
 	public Bombe(int xPosition, int yPosition, int radius, Field feld, Figur spieler) {
@@ -25,7 +25,7 @@ public class Bombe implements Runnable, ActionListener {
 		Timerende();
 	}
 
-	public void Timerende() {
+	private void Timerende() {
 		explode();
 		time.stop();
 		ende = true;

@@ -1,8 +1,8 @@
 package bomber;
 
 public class Explosion implements Runnable{
-	Field feld;
-	int x,y;
+	private Field feld;
+	private int x,y;
 	public Explosion(int xArray, int yArray, Field feld){
 		this.feld=feld;
 		x=xArray;

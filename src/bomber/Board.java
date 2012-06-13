@@ -13,12 +13,11 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Board extends JPanel implements ActionListener {
-	Figur bomber1, bomber2;
-	public Image img, block0, block1, block2, bomb, explo;
-	Timer time;
-	public Field spielfeld = new Field();
-	boolean ini;
-	int m; // movementreichweite
+	private Figur bomber1, bomber2;
+	private Image img, block0, block1, block2, bomb, explo;
+	private Timer time;
+	private  Field spielfeld = new Field();
+	private int m; // movementreichweite
 
 	public Board() {
 		m = 5; // movementreichweite

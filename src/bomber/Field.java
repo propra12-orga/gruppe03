@@ -2,7 +2,7 @@ package bomber;
 
 public class Field {
 	
-	public int[][] feld = new int [15][11];
+	private int[][] feld = new int [15][11];
 	
 	public Field(){
 		for (int in = 0; in < 15; in++) {

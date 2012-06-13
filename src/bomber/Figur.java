@@ -5,9 +5,9 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class Figur {
-	int m, x, y, dx, dy, radi, maxBombs, bombsWorking;
-	Image guy, dead;
-	boolean isAlive;
+	private int m, x, y, dx, dy, radi, maxBombs, bombsWorking;
+	private Image guy, dead;
+	private boolean isAlive;
 
 	public Figur(int xPosition, int yPosition, int Bild) {
 		m = 5; // movementreichweite
@@ -67,7 +67,6 @@ public class Figur {
 		if (maxBombs > bombsWorking && feld.getArry(gethauptarrayX(), gethauptarrayY()) == 0) {
 			Thread bombe = new Thread(new Bombe(gethauptarrayX(), gethauptarrayY(), radi, feld, Figur.this));
 			bombe.start();
-			
 		}
 	}
 
