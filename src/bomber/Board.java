@@ -36,10 +36,10 @@ public class Board extends JPanel implements ActionListener {
 		ImageIcon i2 = new ImageIcon("bilder/block2.jpg");
 		block2 = i2.getImage();
 
-		ImageIcon i10 = new ImageIcon("bilder/blauebombe.png"); // bombe.jpg
+		ImageIcon i10 = new ImageIcon("bilder/blauebombe2.png"); // bombe.jpg
 		bomb = i10.getImage();
 
-		ImageIcon i11 = new ImageIcon("bilder/explosion.jpg");
+		ImageIcon i11 = new ImageIcon("bilder/explosion2.jpg");
 		explo = i11.getImage();
 
 		ImageIcon i12 = new ImageIcon("bilder/broeckel.jpg");
