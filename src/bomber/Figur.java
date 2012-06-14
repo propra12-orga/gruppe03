@@ -67,7 +67,7 @@ public class Figur {
 
 	// bombe legen
 	public void setBomb(Field feld) {
-		if (maxBombs > bombsWorking && feld.getArry(gethauptarrayX(), gethauptarrayY()) == 0) {
+		if (maxBombs > bombsWorking && feld.getArry(gethauptarrayX(), gethauptarrayY()) == 0 && isAlive) {
 			Thread bombe = new Thread(new Bombe(gethauptarrayX(), gethauptarrayY(), radi, feld, Figur.this));
 			bombe.start();
 		}
