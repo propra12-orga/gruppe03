@@ -4,9 +4,8 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class Frame {
-
-	//public  Frame() {
-	public static void main(String[] args) {
+	// public Frame() {
+	public Frame() {
 		JFrame frame = new JFrame();
 		frame.add(new Board());
 		frame.setTitle("our Bombing Game 2 gud");
@@ -25,16 +24,22 @@ public class Frame {
 		menu.add(neu);
 		menu.add(exit);
 
+		class neuAction implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		}
 		class exitAction implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		}
+
 		exit.addActionListener(new exitAction());
+		neu.addActionListener(new neuAction());
 	}
 
-	//public static void main(String[] args) {
-		//new Frame();
-	//}
-
+	public static void main(String[] args) {
+		new Frame();
+	}
 }
