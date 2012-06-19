@@ -5,7 +5,7 @@ public class Field {
 	 * Wertetabbele was wofür steht 0-9 blöcke 10-19 bomben 20-29 items
 	 * 
 	 * 0 frei 1 unzerstörbar 2 zerstörbar 10 bombe 11 explosion 12 broeckeln 7
-	 * Ausgang Triforce
+	 * Ausgang Triforce 20 bombentasche
 	 */
 	private int[][] feld = new int[15][11];
 
