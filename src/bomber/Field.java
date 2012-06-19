@@ -18,8 +18,8 @@ public class Field {
 	public static final int bombentasche=20;
 	public static final int reichweite=21;
 	public static final int bogen=22;
-	public static final int umhang=23;
 	public static final int stiefel=23;
+	public static final int umhang=24;
 	
 	private int[][] feld = new int[15][11];
 
@@ -65,7 +65,7 @@ public class Field {
 
 	public boolean isItem(int x, int y) {
 		int wert = feld[x][y];
-		if (wert == bombentasche || wert == reichweite || wert == stiefel)
+		if (wert == bombentasche || wert == reichweite || wert == stiefel || wert ==bogen || wert ==umhang)
 			return true;
 		else
 			return false;

@@ -14,7 +14,7 @@ import javax.swing.Timer;
 
 public class Board extends JPanel implements ActionListener {
 	private Figur bomber1, bomber2;
-	private Image startscreen, restartscreen, block0, block1, block2, bomb, explo, broeckel, triforce, stiefel, bombentasche, reichweite;
+	private Image startscreen, restartscreen, block0, block1, block2, bomb, explo, broeckel,bogen, triforce, stiefel, bombentasche, reichweite;
 	private Timer time;
 	private Field spielfeld = new Field();
 	public static boolean running, neuesSpiel;
@@ -55,6 +55,8 @@ public class Board extends JPanel implements ActionListener {
 		reichweite = i21.getImage();
 		ImageIcon i22 = new ImageIcon("bilder/pegasusboots.png");
 		stiefel = i22.getImage();
+		ImageIcon i23 = new ImageIcon("bilder/Eisenbogen.png");
+		bogen = i23.getImage();
 
 		time = new Timer(5, this);
 		time.start();
@@ -88,21 +90,21 @@ public class Board extends JPanel implements ActionListener {
 			for (int i = 0; i < 15; i++) {
 				for (int j = 0; j < 11; j++) {
 
-					if (spielfeld.getArry(i, j) == 0) {
+					if (spielfeld.getArry(i, j) == Field.block0) {
 						g2d.drawImage(block0, i * blocksize, j * blocksize, null);
-					} else if (spielfeld.getArry(i, j) == 1) {
+					} else if (spielfeld.getArry(i, j) == Field.block1) {
 						g2d.drawImage(block1, i * blocksize, j * blocksize, null);
-					} else if (spielfeld.getArry(i, j) == 2) {
+					} else if (spielfeld.getArry(i, j) == Field.block2) {
 						g2d.drawImage(block2, i * blocksize, j * blocksize, null);
-					} else if (spielfeld.getArry(i, j) == 10) {
+					} else if (spielfeld.getArry(i, j) == Field.bombe) {
 						// wegen transparenz
 						g2d.drawImage(block0, i * blocksize, j * blocksize, null);
 						g2d.drawImage(bomb, i * blocksize, j * blocksize, null);
-					} else if (spielfeld.getArry(i, j) == 11) {
+					} else if (spielfeld.getArry(i, j) == Field.explosion) {
 						g2d.drawImage(explo, i * blocksize, j * blocksize, null);
-					} else if (spielfeld.getArry(i, j) == 12) {
+					} else if (spielfeld.getArry(i, j) == Field.broeckeln) {
 						g2d.drawImage(broeckel, i * blocksize, j * blocksize, null);
-					} else if (spielfeld.getArry(i, j) == 7) {
+					} else if (spielfeld.getArry(i, j) == Field.ausgang) {
 						g2d.drawImage(triforce, i * blocksize, j * blocksize, null);
 					} else if (spielfeld.getArry(i, j) == Field.bombentasche) {
 						g2d.drawImage(bombentasche, i * blocksize, j * blocksize, null);
@@ -110,6 +112,8 @@ public class Board extends JPanel implements ActionListener {
 						g2d.drawImage(reichweite, i * blocksize, j * blocksize, null);
 					} else if (spielfeld.getArry(i, j) == Field.stiefel) {
 						g2d.drawImage(stiefel, i * blocksize, j * blocksize, null);
+					} else if (spielfeld.getArry(i, j) == Field.bogen) {
+						g2d.drawImage(bogen, i * blocksize, j * blocksize, null);
 					}
 				}
 			}

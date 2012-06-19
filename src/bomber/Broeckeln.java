@@ -30,7 +30,9 @@ public class Broeckeln implements Runnable {
 					feld.setArry(x, y, Field.reichweite);
 				} else if (randomitem == 4) {
 					feld.setArry(x, y, Field.stiefel);
-				} else {
+				} else if (randomitem ==5) {
+					feld.setArry(x, y, Field.bogen);
+				}else {
 					feld.setArry(x, y, 0);
 				}
 			} else {
