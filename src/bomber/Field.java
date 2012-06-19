@@ -12,7 +12,7 @@ public class Field {
  * 10 bombe 
  * 11 explosion
  * 12 broeckeln
- * 
+ * 7 Ausgang Triforce
  */	
 	private int[][] feld = new int [15][11];
 	
@@ -37,7 +37,7 @@ public class Field {
 	
 	public boolean isWalkable(int x, int y){
 		int wert =feld[x][y];
-		if (wert==0||wert==11)
+		if (wert==0||wert==11||wert==7)
 			return true;
 		else
 			return false;
