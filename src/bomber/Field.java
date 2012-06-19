@@ -7,6 +7,20 @@ public class Field {
 	 * 0 frei 1 unzerstörbar 2 zerstörbar 10 bombe 11 explosion 12 broeckeln 7
 	 * Ausgang Triforce 20 bombentasche
 	 */
+	public static final int block0=0;
+	public static final int block1=1;
+	public static final int block2 =2;
+	public static final int ausgang=7;
+	public static final int bombe=10;
+	public static final int explosion=11;
+	public static final int broeckeln=12;
+	
+	public static final int bombentasche=20;
+	public static final int reichweite=21;
+	public static final int bogen=22;
+	public static final int umhang=23;
+	public static final int stiefel=23;
+	
 	private int[][] feld = new int[15][11];
 
 	public Field() {
@@ -39,7 +53,7 @@ public class Field {
 
 	public boolean isWalkable(int x, int y) {
 		int wert = feld[x][y];
-		if (wert == 0 || wert == 11 || wert == 7)
+		if (wert == block0 || wert == explosion || wert == ausgang)
 			return true;
 		else
 			return false;
@@ -47,7 +61,7 @@ public class Field {
 
 	public boolean kannManDraufLeben(int x, int y) {
 		int wert = feld[x][y];
-		if (wert == 0 || wert == 10 || wert == 7)
+		if (wert == block0 || wert == bombe || wert == ausgang || wert == bombentasche)
 			return true;
 		else
 			return false;
@@ -56,7 +70,7 @@ public class Field {
 	
 	public boolean isExplodierbar(int x, int y) {
 		int wert = feld[x][y];
-		if (wert == 0 || wert == 10 || wert == 11)
+		if (wert == block0 || wert == bombe || wert == explosion)
 			return true;
 		else
 			return false;
@@ -64,7 +78,7 @@ public class Field {
 
 	public boolean isZerstoerar(int x, int y) {
 		int wert = feld[x][y];
-		if (wert == 2)
+		if (wert == block2 || wert == bombentasche)
 			return true;
 		else
 			return false;

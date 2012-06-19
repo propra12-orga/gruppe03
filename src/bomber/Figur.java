@@ -5,7 +5,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class Figur {
-	private int m, x, y, dx,dxl,dxr, dy,dyl,dyr, radi, maxBombs, bombsWorking, richtung,bild;
+	private int m, x, y, dx,dxl,dxr, dy,dyl,dyr, radi, maxBombs, bombsWorking, richtung, bild;
 	private Image forward, right, left, back, dead;
 	private boolean isAlive;
 	
@@ -41,6 +41,7 @@ public class Figur {
 			ImageIcon i4 = new ImageIcon("Images/Player 1/Back1.jpg");
 			back = i4.getImage();
 		} else if (Bild == 2) {
+			//TODO 2. spieler richtugen
 			ImageIcon i = new ImageIcon("bilder/huhn.png");
 			forward = i.getImage();
 		}
