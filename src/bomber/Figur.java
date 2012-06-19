@@ -13,9 +13,10 @@ public class Figur {
 	public static final int unten=2;
 	public static final int rechts=3;
 	public static final int links=4;
+	public static final int startmovement=3;
 	
 	public Figur(int xPosition, int yPosition, int Bild) {
-		m = 5; // movementreichweite
+		m = startmovement; // movementreichweite
 		isAlive = true;
 		this.bild=Bild;
 		x = xPosition;
@@ -151,7 +152,7 @@ public class Figur {
 		y=yPos;
 		dx=0;
 		dy=0;
-		m = 5; 
+		m = startmovement; 
 		isAlive = true;
 		bombsWorking=0;
 		maxBombs = 1;
@@ -167,6 +168,15 @@ public class Figur {
 	public void getBombentasche(){
 		maxBombs +=1;
 	}
+	public void getReichweite(){
+		radi +=1;
+	}
+	public void getStiefel(){
+		if (m==3)
+			m=4;
+		if (m==4)
+			m=5;
+	}
 	// Smart Moving Vers 1.0
 	// Abfrage rechts links
 	public void Perma(Field feld) {
@@ -176,10 +186,12 @@ public class Figur {
 				getBombentasche();
 				feld.setArry(gethauptarrayX(), gethauptarrayY(), Field.block0);
 			}else if (feld.getArry(gethauptarrayX(), gethauptarrayY())== Field.reichweite){
-				radi +=1;
+				getReichweite();
 				feld.setArry(gethauptarrayX(), gethauptarrayY(), Field.block0);
-			}
-		}
+			}else if (feld.getArry(gethauptarrayX(), gethauptarrayY())== Field.stiefel && x%60==0 &&y%60==0){
+				getStiefel();
+				feld.setArry(gethauptarrayX(), gethauptarrayY(), Field.block0);
+		} }
 		dx=dxr+dxl;
 		dy=dyr+dyl;
 		if (feld.kannManDraufLeben(gethauptarrayX(), gethauptarrayY()) && isAlive == true) {

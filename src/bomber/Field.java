@@ -28,9 +28,9 @@ public class Field {
 			for (int jn = 0; jn < 11; jn++) {
 
 				if (in == 0 || jn == 0 || in == 14 || jn == 10 || (in % 2 == 0 && jn % 2 == 0))
-					feld[in][jn] = 1;
+					feld[in][jn] = block1;
 				else
-					feld[in][jn] = 2;
+					feld[in][jn] = block2;
 
 			}
 		}
@@ -43,9 +43,7 @@ public class Field {
 		feld[1][3] = 7;
 	}
 
-	public void ItemBombentasche(int x, int y){
-		feld[x][y]=bombentasche;
-	}
+
 	
 	public int getArry(int x, int y) {
 		return feld[x][y];
@@ -75,7 +73,9 @@ public class Field {
 	
 	public boolean kannManDraufLeben(int x, int y) {
 		int wert = feld[x][y];
-		if (wert == block0 || wert == bombe || wert == ausgang || wert == bombentasche)
+		if (isItem(x,y))
+			return true;
+		if (wert == block0 || wert == bombe || wert == ausgang )
 			return true;
 		else
 			return false;
@@ -92,7 +92,9 @@ public class Field {
 
 	public boolean isZerstoerar(int x, int y) {
 		int wert = feld[x][y];
-		if (wert == block2 || wert == bombentasche||wert==reichweite)
+		if (isItem(x,y))
+			return true;
+		if (wert == block2)
 			return true;
 		else
 			return false;

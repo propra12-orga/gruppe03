@@ -12,7 +12,7 @@ public class Broeckeln implements Runnable {
 		y = yArray;
 		this.feld = feld;
 		Random r = new Random();
-		randomitem = r.nextInt(6); // =0,1,..,5
+		randomitem = r.nextInt(8); // =0,1,..,7
 
 	}
 
@@ -24,10 +24,12 @@ public class Broeckeln implements Runnable {
 			feld.setArry(x, y, 12);
 			Thread.sleep(500);
 			if (newitemOK) {
-				if (randomitem == 0) {
+				if (randomitem == 0 || randomitem == 1) {
 					feld.setArry(x, y, Field.bombentasche);
-				} else if (randomitem == 1) {
+				} else if (randomitem == 2 || randomitem == 3) {
 					feld.setArry(x, y, Field.reichweite);
+				} else if (randomitem == 4) {
+					feld.setArry(x, y, Field.stiefel);
 				} else {
 					feld.setArry(x, y, 0);
 				}

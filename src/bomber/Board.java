@@ -14,7 +14,7 @@ import javax.swing.Timer;
 
 public class Board extends JPanel implements ActionListener {
 	private Figur bomber1, bomber2;
-	private Image startscreen, restartscreen, block0, block1, block2, bomb, explo, broeckel, triforce, bombentasche, reichweite;
+	private Image startscreen, restartscreen, block0, block1, block2, bomb, explo, broeckel, triforce, stiefel, bombentasche, reichweite;
 	private Timer time;
 	private Field spielfeld = new Field();
 	public static boolean running, neuesSpiel;
@@ -53,6 +53,8 @@ public class Board extends JPanel implements ActionListener {
 		bombentasche = i20.getImage();
 		ImageIcon i21 = new ImageIcon("bilder/explosion.jpg");
 		reichweite = i21.getImage();
+		ImageIcon i22 = new ImageIcon("bilder/pegasusboots.png");
+		stiefel = i22.getImage();
 
 		time = new Timer(5, this);
 		time.start();
@@ -106,6 +108,8 @@ public class Board extends JPanel implements ActionListener {
 						g2d.drawImage(bombentasche, i * blocksize, j * blocksize, null);
 					} else if (spielfeld.getArry(i, j) == Field.reichweite) {
 						g2d.drawImage(reichweite, i * blocksize, j * blocksize, null);
+					} else if (spielfeld.getArry(i, j) == Field.stiefel) {
+						g2d.drawImage(stiefel, i * blocksize, j * blocksize, null);
 					}
 				}
 			}
