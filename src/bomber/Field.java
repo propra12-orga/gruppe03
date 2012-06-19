@@ -43,8 +43,13 @@ public class Field {
 		feld[1][3] = 7;
 	}
 
-	public int getArry(int i, int j) {
-		return feld[i][j];
+	public void ItemBombentasche(int x, int y){
+		feld[x][y]=bombentasche;
+		
+	}
+	
+	public int getArry(int x, int y) {
+		return feld[x][y];
 	}
 
 	public void setArry(int i, int j, int wert) {
