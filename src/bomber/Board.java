@@ -14,7 +14,7 @@ import javax.swing.Timer;
 
 public class Board extends JPanel implements ActionListener {
 	private Figur bomber1, bomber2;
-	private Image block0, block1, block2, bomb, explo, broeckel, triforce;
+	private Image block0, block1, block2, bomb, explo, broeckel, triforce,bombentasche,reichweite;
 	private Timer time;
 	private Field spielfeld = new Field();
 	private int m; // movementreichweite
@@ -40,7 +40,9 @@ public class Board extends JPanel implements ActionListener {
 		broeckel = i12.getImage();
 		ImageIcon i7 = new ImageIcon("bilder/triforce.gif");
 		triforce = i7.getImage();
-
+		ImageIcon i20 = new ImageIcon("bilder/Kleine_Bombentasche.png");
+		bombentasche = i20.getImage();
+		
 		time = new Timer(5, this);
 		time.start();
 
@@ -80,6 +82,8 @@ public class Board extends JPanel implements ActionListener {
 					g2d.drawImage(broeckel, i * blocksize, j * blocksize, null);
 				} else if (spielfeld.getArry(i, j) == 7) {
 					g2d.drawImage(triforce, i * blocksize, j * blocksize, null);
+				}else if (spielfeld.getArry(i, j) == Field.bombentasche) {
+					g2d.drawImage(bombentasche, i * blocksize, j * blocksize, null);
 				}
 			}
 		}

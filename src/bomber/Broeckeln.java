@@ -21,9 +21,9 @@ public class Broeckeln implements Runnable {
 			feld.setArry(x, y, 12);
 			Thread.sleep(500);
 			if (randomitem < 3) {
-				Item neu = new Item(x, y, Item.bombentasche, feld);
-			}
-			feld.setArry(x, y, 0);
+				feld.setArry(x, y, Field.bombentasche);
+			}else{
+			feld.setArry(x, y, 0);}
 		} catch (Exception e) {
 		}
 	}

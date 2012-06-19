@@ -45,7 +45,6 @@ public class Field {
 
 	public void ItemBombentasche(int x, int y){
 		feld[x][y]=bombentasche;
-		
 	}
 	
 	public int getArry(int x, int y) {
@@ -58,12 +57,22 @@ public class Field {
 
 	public boolean isWalkable(int x, int y) {
 		int wert = feld[x][y];
+		if (isItem(x,y))
+			return true;
 		if (wert == block0 || wert == explosion || wert == ausgang)
 			return true;
 		else
 			return false;
 	}
 
+	public boolean isItem(int x, int y) {
+		int wert = feld[x][y];
+		if (wert == bombentasche || wert == reichweite || wert == stiefel)
+			return true;
+		else
+			return false;
+	}
+	
 	public boolean kannManDraufLeben(int x, int y) {
 		int wert = feld[x][y];
 		if (wert == block0 || wert == bombe || wert == ausgang || wert == bombentasche)

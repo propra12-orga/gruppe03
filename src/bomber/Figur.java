@@ -144,10 +144,20 @@ public class Figur {
 		int posy = (y + 30) / 60;
 		return posy;
 	}
-
+//ITEM FUNKTIONEN
+	public void getBombentasche(){
+		maxBombs +=1;
+	}
 	// Smart Moving Vers 1.0
 	// Abfrage rechts links
 	public void Perma(Field feld) {
+		//itemabfrage
+		if (feld.isItem(gethauptarrayX(), gethauptarrayY())){
+			if (feld.getArry(gethauptarrayX(), gethauptarrayY())== Field.bombentasche){
+				getBombentasche();
+				feld.setArry(gethauptarrayX(), gethauptarrayY(), Field.block0);
+				}
+			}
 		dx=dxr+dxl;
 		dy=dyr+dyl;
 		if (feld.kannManDraufLeben(gethauptarrayX(), gethauptarrayY()) && isAlive == true) {
