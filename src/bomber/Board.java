@@ -14,9 +14,9 @@ import javax.swing.Timer;
 
 public class Board extends JPanel implements ActionListener {
 	private Figur bomber1, bomber2;
-	private Image block0, block1, block2, bomb, explo, broeckel;
+	private Image block0, block1, block2, bomb, explo, broeckel, triforce;
 	private Timer time;
-	private  Field spielfeld = new Field();
+	private Field spielfeld = new Field();
 	private int m; // movementreichweite
 
 	public Board() {
@@ -26,25 +26,21 @@ public class Board extends JPanel implements ActionListener {
 		addKeyListener(new AL());
 		setFocusable(true);
 
-
 		ImageIcon i0 = new ImageIcon("bilder/block0.jpg");
 		block0 = i0.getImage();
-
 		ImageIcon i1 = new ImageIcon("bilder/block1.jpg");
 		block1 = i1.getImage();
-
 		ImageIcon i2 = new ImageIcon("bilder/block2.jpg");
 		block2 = i2.getImage();
-
 		ImageIcon i10 = new ImageIcon("bilder/blauebombe2.png"); // bombe.jpg
 		bomb = i10.getImage();
-
 		ImageIcon i11 = new ImageIcon("bilder/explosion2.jpg");
 		explo = i11.getImage();
-
 		ImageIcon i12 = new ImageIcon("bilder/broeckel.jpg");
 		broeckel = i12.getImage();
-		
+		ImageIcon i7 = new ImageIcon("bilder/triforce.gif");
+		triforce = i7.getImage();
+
 		time = new Timer(5, this);
 		time.start();
 
@@ -74,14 +70,16 @@ public class Board extends JPanel implements ActionListener {
 					g2d.drawImage(block1, i * blocksize, j * blocksize, null);
 				} else if (spielfeld.getArry(i, j) == 2) {
 					g2d.drawImage(block2, i * blocksize, j * blocksize, null);
-				} else if (spielfeld.getArry(i, j) == 10) { 
+				} else if (spielfeld.getArry(i, j) == 10) {
 					// wegen transparenz
 					g2d.drawImage(block0, i * blocksize, j * blocksize, null);
 					g2d.drawImage(bomb, i * blocksize, j * blocksize, null);
 				} else if (spielfeld.getArry(i, j) == 11) {
 					g2d.drawImage(explo, i * blocksize, j * blocksize, null);
-				}else if (spielfeld.getArry(i, j) == 12) {
+				} else if (spielfeld.getArry(i, j) == 12) {
 					g2d.drawImage(broeckel, i * blocksize, j * blocksize, null);
+				} else if (spielfeld.getArry(i, j) == 7) {
+					g2d.drawImage(triforce, i * blocksize, j * blocksize, null);
 				}
 			}
 		}
