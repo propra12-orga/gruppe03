@@ -4,8 +4,10 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class Frame {
+	public static boolean NeuesSpiel;
 	// public Frame() {
 	public Frame() {
+		Board.running =false;
 		JFrame frame = new JFrame();
 		frame.add(new Board());
 		frame.setTitle("our Bombing Game 2 gud");
@@ -26,7 +28,7 @@ public class Frame {
 
 		class neuAction implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
-				
+				Board.running =true;
 			}
 		}
 		class exitAction implements ActionListener {
