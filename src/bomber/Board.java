@@ -19,19 +19,21 @@ public class Board extends JPanel implements ActionListener {
 	private Field spielfeld = new Field();
 	public static boolean running, neuesSpiel;
 	public final int blocksize = 60;
+	private int restartzaehler;
 
 	public Board() {
+		restartzaehler = 0;
 		running = false;
 		neuesSpiel = false;
 		bomber1 = new Figur(60, 60, 1);
-		bomber2 = new Figur(60 * 13, 60 * 9, 2);
+		bomber2 = new Figur(60 * 13, 60 * 9, 1);
 
 		addKeyListener(new AL());
 		setFocusable(true);
 
 		ImageIcon istart = new ImageIcon("bilder/Startscreen.jpg");
 		startscreen = istart.getImage();
-		ImageIcon irestart = new ImageIcon("bilder/Restartscreen.jpg");
+		ImageIcon irestart = new ImageIcon("bilder/Restartecreen.jpg");
 		restartscreen = irestart.getImage();
 		ImageIcon i0 = new ImageIcon("bilder/block0.jpg");
 		block0 = i0.getImage();
@@ -63,22 +65,16 @@ public class Board extends JPanel implements ActionListener {
 			bomber1.Perma(spielfeld);
 			bomber2.Perma(spielfeld);
 		} else if (neuesSpiel) {
-			try {
-				Thread.sleep(200);
+			if (restartzaehler == 300) {
+				restartzaehler = 0;
 				spielfeld.restart();
 				bomber1.restart(60, 60);
 				bomber2.restart(13 * 60, 9 * 60);
 				neuesSpiel = false;
 				running = true;
-
-			} catch (Exception ee) {
+			} else {
+				restartzaehler += 1;
 			}
-
-			spielfeld.restart();
-			bomber1.restart(60, 60);
-			bomber2.restart(13 * 60, 9 * 60);
-			neuesSpiel = false;
-			running = true;
 		}
 		repaint();
 	}
