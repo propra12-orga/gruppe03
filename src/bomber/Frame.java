@@ -28,7 +28,12 @@ public class Frame {
 
 		class neuAction implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
-				Board.running =true;
+				if (Board.running==false){
+					Board.running =true;
+				}else{
+					Board.running=false;
+					Board.neuesSpiel=true;
+				}
 			}
 		}
 		class exitAction implements ActionListener {

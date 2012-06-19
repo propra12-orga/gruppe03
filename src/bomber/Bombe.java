@@ -39,7 +39,10 @@ public class Bombe implements Runnable, ActionListener {
 			time = new Timer(2000, this);
 			time.start();
 			while (ende == false) {
-				if (feld.getArry(x, y) != 10) {
+				if (Board.neuesSpiel){
+					ende=true;
+					time.stop();
+				}else if (feld.getArry(x, y) != 10) {
 					Timerende();
 				}
 				Thread.sleep(10);

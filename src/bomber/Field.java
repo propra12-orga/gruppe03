@@ -92,9 +92,29 @@ public class Field {
 
 	public boolean isZerstoerar(int x, int y) {
 		int wert = feld[x][y];
-		if (wert == block2 || wert == bombentasche)
+		if (wert == block2 || wert == bombentasche||wert==reichweite)
 			return true;
 		else
 			return false;
+	}
+
+	public void restart() {
+		for (int in = 0; in < 15; in++) {
+			for (int jn = 0; jn < 11; jn++) {
+
+				if (in == 0 || jn == 0 || in == 14 || jn == 10 || (in % 2 == 0 && jn % 2 == 0))
+					feld[in][jn] = 1;
+				else
+					feld[in][jn] = 2;
+
+			}
+		}
+		feld[13][9] = 0;
+		feld[13][8] = 0;
+		feld[12][9] = 0;
+		feld[1][1] = 0;
+		feld[1][2] = 0;
+		feld[2][1] = 0;
+		feld[1][3] = 7;
 	}
 }

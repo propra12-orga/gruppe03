@@ -54,7 +54,9 @@ public class Figur {
 	public int getY() {
 		return y;
 	}
-	
+	public int getMovementspeed(){
+		return m;
+	}
 	public void setMaxBombs(int maxB){
 		if (maxB>0)
 		maxBombs=maxB;
@@ -144,6 +146,23 @@ public class Figur {
 		int posy = (y + 30) / 60;
 		return posy;
 	}
+	public void restart(int xPos, int yPos) {
+		x=xPos;
+		y=yPos;
+		dx=0;
+		dy=0;
+		m = 5; 
+		isAlive = true;
+		bombsWorking=0;
+		maxBombs = 1;
+		radi = 2;
+		dxl=0;
+		dxr=0;
+		dyl=0;
+		dxl=0;
+		richtung=unten;
+		
+	}
 //ITEM FUNKTIONEN
 	public void getBombentasche(){
 		maxBombs +=1;
@@ -213,4 +232,6 @@ public class Figur {
 			isAlive = false;
 		}
 	}
+
+	
 }

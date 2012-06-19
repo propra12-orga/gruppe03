@@ -14,16 +14,15 @@ import javax.swing.Timer;
 
 public class Board extends JPanel implements ActionListener {
 	private Figur bomber1, bomber2;
-	private Image startscreen, block0, block1, block2, bomb, explo, broeckel, triforce, bombentasche, reichweite;
+	private Image startscreen, restartscreen, block0, block1, block2, bomb, explo, broeckel, triforce, bombentasche, reichweite;
 	private Timer time;
 	private Field spielfeld = new Field();
-	private int m; // movementreichweite
-	public static boolean running;
+	public static boolean running, neuesSpiel;
+	public final int blocksize = 60;
 
 	public Board() {
 		running = false;
-		m = 5; // movementreichweite
-
+		neuesSpiel = false;
 		bomber1 = new Figur(60, 60, 1);
 		bomber2 = new Figur(60 * 13, 60 * 9, 2);
 
@@ -32,6 +31,8 @@ public class Board extends JPanel implements ActionListener {
 
 		ImageIcon istart = new ImageIcon("bilder/Startscreen.jpg");
 		startscreen = istart.getImage();
+		ImageIcon irestart = new ImageIcon("bilder/Restartscreen.jpg");
+		restartscreen = irestart.getImage();
 		ImageIcon i0 = new ImageIcon("bilder/block0.jpg");
 		block0 = i0.getImage();
 		ImageIcon i1 = new ImageIcon("bilder/block1.jpg");
@@ -61,85 +62,100 @@ public class Board extends JPanel implements ActionListener {
 		if (running) {
 			bomber1.Perma(spielfeld);
 			bomber2.Perma(spielfeld);
-			repaint();
+		} else if (neuesSpiel) {
+			try {
+				Thread.sleep(200);
+				spielfeld.restart();
+				bomber1.restart(60, 60);
+				bomber2.restart(13 * 60, 9 * 60);
+				neuesSpiel = false;
+				running = true;
+
+			} catch (Exception ee) {
+			}
+
+			spielfeld.restart();
+			bomber1.restart(60, 60);
+			bomber2.restart(13 * 60, 9 * 60);
+			neuesSpiel = false;
+			running = true;
 		}
+		repaint();
 	}
 
 	public void paint(Graphics g) {
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
+		if (running) {
+			for (int i = 0; i < 15; i++) {
+				for (int j = 0; j < 11; j++) {
 
-		// Feld wird gemalt
-		// 0=block0(laufweg) 1=block1(fester block) 10=bombe
-		int blocksize = 60;
-		for (int i = 0; i < 15; i++) {
-			for (int j = 0; j < 11; j++) {
-
-				if (spielfeld.getArry(i, j) == 0) {
-					g2d.drawImage(block0, i * blocksize, j * blocksize, null);
-				} else if (spielfeld.getArry(i, j) == 1) {
-					g2d.drawImage(block1, i * blocksize, j * blocksize, null);
-				} else if (spielfeld.getArry(i, j) == 2) {
-					g2d.drawImage(block2, i * blocksize, j * blocksize, null);
-				} else if (spielfeld.getArry(i, j) == 10) {
-					// wegen transparenz
-					g2d.drawImage(block0, i * blocksize, j * blocksize, null);
-					g2d.drawImage(bomb, i * blocksize, j * blocksize, null);
-				} else if (spielfeld.getArry(i, j) == 11) {
-					g2d.drawImage(explo, i * blocksize, j * blocksize, null);
-				} else if (spielfeld.getArry(i, j) == 12) {
-					g2d.drawImage(broeckel, i * blocksize, j * blocksize, null);
-				} else if (spielfeld.getArry(i, j) == 7) {
-					g2d.drawImage(triforce, i * blocksize, j * blocksize, null);
-				} else if (spielfeld.getArry(i, j) == Field.bombentasche) {
-					g2d.drawImage(bombentasche, i * blocksize, j * blocksize, null);
-				} else if (spielfeld.getArry(i, j) == Field.reichweite) {
-					g2d.drawImage(reichweite, i * blocksize, j * blocksize, null);
+					if (spielfeld.getArry(i, j) == 0) {
+						g2d.drawImage(block0, i * blocksize, j * blocksize, null);
+					} else if (spielfeld.getArry(i, j) == 1) {
+						g2d.drawImage(block1, i * blocksize, j * blocksize, null);
+					} else if (spielfeld.getArry(i, j) == 2) {
+						g2d.drawImage(block2, i * blocksize, j * blocksize, null);
+					} else if (spielfeld.getArry(i, j) == 10) {
+						// wegen transparenz
+						g2d.drawImage(block0, i * blocksize, j * blocksize, null);
+						g2d.drawImage(bomb, i * blocksize, j * blocksize, null);
+					} else if (spielfeld.getArry(i, j) == 11) {
+						g2d.drawImage(explo, i * blocksize, j * blocksize, null);
+					} else if (spielfeld.getArry(i, j) == 12) {
+						g2d.drawImage(broeckel, i * blocksize, j * blocksize, null);
+					} else if (spielfeld.getArry(i, j) == 7) {
+						g2d.drawImage(triforce, i * blocksize, j * blocksize, null);
+					} else if (spielfeld.getArry(i, j) == Field.bombentasche) {
+						g2d.drawImage(bombentasche, i * blocksize, j * blocksize, null);
+					} else if (spielfeld.getArry(i, j) == Field.reichweite) {
+						g2d.drawImage(reichweite, i * blocksize, j * blocksize, null);
+					}
 				}
 			}
-		}
-		g2d.drawImage(bomber1.getImage(), bomber1.getX(), bomber1.getY(), null);
-		g2d.drawImage(bomber2.getImage(), bomber2.getX(), bomber2.getY(), null);
-		if(running==false){
-			g2d.drawImage(startscreen,0,0,null);
+			g2d.drawImage(bomber1.getImage(), bomber1.getX(), bomber1.getY(), null);
+			g2d.drawImage(bomber2.getImage(), bomber2.getX(), bomber2.getY(), null);
+		} else if (running == false && neuesSpiel == false) {
+			g2d.drawImage(startscreen, 0, 0, null);
+		} else if (neuesSpiel == true) {
+			g2d.drawImage(restartscreen, 0, 0, null);
 		}
 	}
 
 	// KEY ABFRAGE
-
 	private class AL extends KeyAdapter {
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
 			if (running) {
 				// bomber1
 				if (key == KeyEvent.VK_LEFT) {
-					bomber1.setdxl(-m);
+					bomber1.setdxl(-bomber1.getMovementspeed());
 				} else if (key == KeyEvent.VK_RIGHT) {
-					bomber1.setdxr(m);
+					bomber1.setdxr(bomber1.getMovementspeed());
 				} else if (key == KeyEvent.VK_UP) {
-					bomber1.setdyl(-m);
+					bomber1.setdyl(-bomber1.getMovementspeed());
 				} else if (key == KeyEvent.VK_DOWN) {
-					bomber1.setdyr(m);
+					bomber1.setdyr(bomber1.getMovementspeed());
 				} else if (key == KeyEvent.VK_CONTROL) {
 					bomber1.setBomb(spielfeld);
 				}
 
 				// bomber2
 				if (key == KeyEvent.VK_A) {
-					bomber2.setdxl(-m);
+					bomber2.setdxl(-bomber2.getMovementspeed());
 				} else if (key == KeyEvent.VK_D) {
-					bomber2.setdxr(m);
+					bomber2.setdxr(bomber2.getMovementspeed());
 				} else if (key == KeyEvent.VK_W) {
-					bomber2.setdyl(-m);
+					bomber2.setdyl(-bomber2.getMovementspeed());
 				} else if (key == KeyEvent.VK_S) {
-					bomber2.setdyr(m);
+					bomber2.setdyr(bomber2.getMovementspeed());
 				} else if (key == KeyEvent.VK_SPACE) {
 					bomber2.setBomb(spielfeld);
 				}
 			} else {
-				if (key == KeyEvent.VK_ENTER) {
-					Board.running=true;
-			}
+				if (key == KeyEvent.VK_ENTER && neuesSpiel == false) {
+					Board.running = true;
+				}
 
 			}
 		}

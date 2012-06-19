@@ -18,14 +18,22 @@ public class Broeckeln implements Runnable {
 
 	public void run() {
 		try {
+			boolean newitemOK = false;
+			if (feld.getArry(x, y) == Field.block2)
+				newitemOK = true;
 			feld.setArry(x, y, 12);
 			Thread.sleep(500);
-			if (randomitem == 0) {
-				feld.setArry(x, y, Field.bombentasche);
-			}else if (randomitem ==1){
-				feld.setArry(x, y, Field.reichweite);
-			}else{
-				feld.setArry(x, y, 0);}
+			if (newitemOK) {
+				if (randomitem == 0) {
+					feld.setArry(x, y, Field.bombentasche);
+				} else if (randomitem == 1) {
+					feld.setArry(x, y, Field.reichweite);
+				} else {
+					feld.setArry(x, y, 0);
+				}
+			} else {
+				feld.setArry(x, y, 0);
+			}
 		} catch (Exception e) {
 		}
 	}
