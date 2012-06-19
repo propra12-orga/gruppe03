@@ -21,8 +21,8 @@ public class Figur {
 		x = xPosition;
 		y = yPosition;
 		bombsWorking=0;
-		maxBombs = 3;
-		radi = 5;
+		maxBombs = 1;
+		radi = 2;
 		dxl=0;
 		dxr=0;
 		dyl=0;
@@ -156,8 +156,11 @@ public class Figur {
 			if (feld.getArry(gethauptarrayX(), gethauptarrayY())== Field.bombentasche){
 				getBombentasche();
 				feld.setArry(gethauptarrayX(), gethauptarrayY(), Field.block0);
-				}
+			}else if (feld.getArry(gethauptarrayX(), gethauptarrayY())== Field.reichweite){
+				radi +=1;
+				feld.setArry(gethauptarrayX(), gethauptarrayY(), Field.block0);
 			}
+		}
 		dx=dxr+dxl;
 		dy=dyr+dyl;
 		if (feld.kannManDraufLeben(gethauptarrayX(), gethauptarrayY()) && isAlive == true) {

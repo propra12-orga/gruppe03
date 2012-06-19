@@ -42,6 +42,8 @@ public class Board extends JPanel implements ActionListener {
 		triforce = i7.getImage();
 		ImageIcon i20 = new ImageIcon("bilder/Kleine_Bombentasche.png");
 		bombentasche = i20.getImage();
+		ImageIcon i21 = new ImageIcon("bilder/explosion.jpg");
+		reichweite = i21.getImage();
 		
 		time = new Timer(5, this);
 		time.start();
@@ -84,6 +86,8 @@ public class Board extends JPanel implements ActionListener {
 					g2d.drawImage(triforce, i * blocksize, j * blocksize, null);
 				}else if (spielfeld.getArry(i, j) == Field.bombentasche) {
 					g2d.drawImage(bombentasche, i * blocksize, j * blocksize, null);
+				}else if (spielfeld.getArry(i, j) == Field.reichweite) {
+					g2d.drawImage(reichweite, i * blocksize, j * blocksize, null);
 				}
 			}
 		}
