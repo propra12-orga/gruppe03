@@ -5,9 +5,11 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class Figur {
-	private int m, x, y, dx, dxl, dxr, dy, dyl, dyr, radi, maxBombs, bombsWorking, richtung, bild;
+	private int m, x, y, dx, dxl, dxr, dy, dyl, dyr, richtung, bild, radi, maxBombs, bombsWorking, maxArrows, arrowsWorking;
+	public int arrowPosX, arrowPosY, arrowRichtung;
 	private Image forward, right, left, back, dead;
 	private boolean isAlive;
+	public boolean arrowIsWorking;
 
 	public static final int oben = 1;
 	public static final int unten = 2;
@@ -23,6 +25,9 @@ public class Figur {
 		y = yPosition;
 		bombsWorking = 0;
 		maxBombs = 1;
+		maxArrows = 1;
+		arrowsWorking = 0;
+		arrowIsWorking = false;
 		radi = 2;
 		dxl = 0;
 		dxr = 0;
@@ -105,6 +110,15 @@ public class Figur {
 		}
 	}
 
+	// Bogen schiessen
+	public void shootArrow(Field feld) {
+		if (maxArrows > arrowsWorking) {
+			Thread fly = new Thread(new Arrow(x, y, richtung, Figur.this));
+			fly.start();
+		}
+
+	}
+
 	// einfache Funktionen
 	public void moveLR() {
 		x += dx;
@@ -176,12 +190,15 @@ public class Figur {
 		isAlive = true;
 		bombsWorking = 0;
 		maxBombs = 1;
+		maxArrows = 1;
+		arrowsWorking = 0;
 		radi = 2;
 		dxl = 0;
 		dxr = 0;
 		dyl = 0;
 		dxl = 0;
 		richtung = unten;
+		arrowIsWorking = false;
 
 	}
 
@@ -276,6 +293,20 @@ public class Figur {
 		} else {
 			isAlive = false;
 		}
+	}
+
+	public void arrowsWorkingPlus(int x, int y, int arrowRichtung) {
+		arrowIsWorking = true;
+		arrowsWorking += 1;
+		this.arrowRichtung = arrowRichtung;
+		arrowPosX = x;
+		arrowPosY = y;
+	}
+
+	public void arrowsWorkingMinus(int x, int y) {
+		if (arrowsWorking > 0)
+			arrowsWorking -= 1;
+
 	}
 
 }

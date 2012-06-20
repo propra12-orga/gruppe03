@@ -14,7 +14,8 @@ import javax.swing.Timer;
 
 public class Board extends JPanel implements ActionListener {
 	private Figur bomber1, bomber2;
-	private Image startscreen, restartscreen, block0, block1, block2, bomb, explo, broeckel,bogen, triforce, stiefel, bombentasche, reichweite;
+	private Image pfeilLinks, pfeilRechts, pfeilOben, pfeilUnten, startscreen, restartscreen, block0, block1, block2, bomb, explo, broeckel, bogen, triforce, stiefel,
+			bombentasche, reichweite;
 	private Timer time;
 	private Field spielfeld = new Field();
 	public static boolean running, neuesSpiel;
@@ -57,7 +58,9 @@ public class Board extends JPanel implements ActionListener {
 		stiefel = i22.getImage();
 		ImageIcon i23 = new ImageIcon("bilder/Eisenbogen.png");
 		bogen = i23.getImage();
-
+		ImageIcon iarrow = new ImageIcon("bilder/pfeil_links.jpg");
+		pfeilLinks = iarrow.getImage();
+		// TODO pfeile laden
 		time = new Timer(5, this);
 		time.start();
 
@@ -119,6 +122,9 @@ public class Board extends JPanel implements ActionListener {
 			}
 			g2d.drawImage(bomber1.getImage(), bomber1.getX(), bomber1.getY(), null);
 			g2d.drawImage(bomber2.getImage(), bomber2.getX(), bomber2.getY(), null);
+			if (bomber1.arrowIsWorking) { // TODO pfeilrichtungsabfrage
+				g2d.drawImage(pfeilRechts, bomber1.arrowPosX, bomber1.arrowPosY, null);
+			}
 		} else if (running == false && neuesSpiel == false) {
 			g2d.drawImage(startscreen, 0, 0, null);
 		} else if (neuesSpiel == true) {
@@ -127,6 +133,7 @@ public class Board extends JPanel implements ActionListener {
 	}
 
 	// KEY ABFRAGE
+	// TODO Arrows !
 	private class AL extends KeyAdapter {
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();

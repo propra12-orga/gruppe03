@@ -22,7 +22,7 @@ public class Broeckeln implements Runnable {
 			if (feld.getArry(x, y) == Field.block2)
 				newitemOK = true;
 			feld.setArry(x, y, 12);
-			Thread.sleep(500);
+			Thread.sleep(Explosion.explotime);
 			if (newitemOK) {
 				if (randomitem == 0 || randomitem == 1) {
 					feld.setArry(x, y, Field.bombentasche);
