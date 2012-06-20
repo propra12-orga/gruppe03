@@ -5,17 +5,11 @@ import java.awt.event.*;
 
 public class Frame {
 	public static boolean NeuesSpiel;
+
 	// public Frame() {
 	public Frame() {
-		Board.running =false;
+		Board.running = false;
 		JFrame frame = new JFrame();
-		frame.add(new Board());
-		frame.setTitle("our Bombing Game 2 gud");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(60 * 15 + 100, 60 * 11 + 70);
-		frame.setVisible(true);
-		frame.setLocationRelativeTo(null);
-
 		// MEnü
 		JMenuBar menubar = new JMenuBar();
 		frame.setJMenuBar(menubar);
@@ -25,14 +19,21 @@ public class Frame {
 		menubar.add(menu);
 		menu.add(neu);
 		menu.add(exit);
+	
+		frame.add(new Board());
+		frame.setTitle("our Bombing Game 2 gud");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(60 * 15 + 100, 60 * 11 + 70);
+		frame.setVisible(true);
+		frame.setLocationRelativeTo(null);
 
 		class neuAction implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
-				if (Board.running==false){
-					Board.running =true;
-				}else{
-					Board.running=false;
-					Board.neuesSpiel=true;
+				if (Board.running == false) {
+					Board.running = true;
+				} else {
+					Board.running = false;
+					Board.neuesSpiel = true;
 				}
 			}
 		}
