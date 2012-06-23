@@ -5,10 +5,10 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class Figur {
-	private int m, x, y, dx, dxl, dxr, dy, dyl, dyr, richtung, bild, radi, maxBombs, bombsWorking, maxArrows, arrowsWorking;
+	private int m, x, y, dx, dxl, dxr, dy, dyl, dyr, timerLost, richtung, bild, radi, maxBombs, bombsWorking, maxArrows, arrowsWorking;
 	public int arrowPosX, arrowPosY, arrowRichtung;
 	private Image forward, right, left, back, dead;
-	private boolean isAlive;
+	private boolean isAlive, lost;
 	public boolean arrowIsWorking;
 
 	public static final int oben = 1;
@@ -20,6 +20,7 @@ public class Figur {
 	public Figur(int xPosition, int yPosition, int Bild) {
 		m = startmovement; // movementreichweite
 		isAlive = true;
+		timerLost = 0;
 		this.bild = Bild;
 		x = xPosition;
 		y = yPosition;
@@ -28,6 +29,7 @@ public class Figur {
 		maxArrows = 1;
 		arrowsWorking = 0;
 		arrowIsWorking = false;
+		lost = false;
 		radi = 2;
 		dxl = 0;
 		dxr = 0;
@@ -51,6 +53,10 @@ public class Figur {
 			ImageIcon i = new ImageIcon("bilder/huhn.png");
 			forward = i.getImage();
 		}
+	}
+
+	public boolean isAlive() {
+		return isAlive;
 	}
 
 	public int getX() {
@@ -192,6 +198,8 @@ public class Figur {
 		maxBombs = 1;
 		maxArrows = 1;
 		arrowsWorking = 0;
+		lost = false;
+		timerLost = 0;
 		radi = 2;
 		dxl = 0;
 		dxr = 0;
@@ -226,6 +234,14 @@ public class Figur {
 	// Smart Moving Vers 1.0
 	// Abfrage rechts links
 	public void Perma(Field feld) {
+		// Verliererabfrage
+		if (isAlive == false) {
+			if (timerLost == 300) {
+				lost = true;
+			} else {
+				timerLost += 1;
+			}
+		}
 		// itemabfrage
 		if (feld.isItem(gethauptarrayX(), gethauptarrayY())) {
 			if (feld.getArry(gethauptarrayX(), gethauptarrayY()) == Field.bombentasche) {
@@ -307,6 +323,11 @@ public class Figur {
 		if (arrowsWorking > 0)
 			arrowsWorking -= 1;
 
+	}
+
+	public boolean lost() {
+
+		return lost;
 	}
 
 }

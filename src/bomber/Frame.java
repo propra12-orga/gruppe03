@@ -19,7 +19,7 @@ public class Frame {
 		menubar.add(menu);
 		menu.add(neu);
 		menu.add(exit);
-	
+
 		frame.add(new Board());
 		frame.setTitle("our Bombing Game 2 gud");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,6 +29,7 @@ public class Frame {
 
 		class neuAction implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
+				Board.winner = 0;
 				if (Board.running == false) {
 					Board.running = true;
 				} else {

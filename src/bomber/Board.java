@@ -15,12 +15,15 @@ import javax.swing.Timer;
 public class Board extends JPanel implements ActionListener {
 	private Figur bomber1, bomber2;
 	private Image pfeilLinks, pfeilRechts, pfeilOben, pfeilUnten, startscreen, restartscreen, block0, block1, block2, bomb, explo, broeckel, bogen, triforce, stiefel,
-			bombentasche, reichweite;
+			bombentasche, reichweite,winner1,winner2,draw;
 	private Timer time;
 	private Field spielfeld = new Field();
 	public static boolean running, neuesSpiel;
 	public final int blocksize = 60;
-	private int restartzaehler;
+	private int restartzaehler; 
+	public static int winner;
+
+	// winner = {1,2,3} 3<=>draw
 
 	public Board() {
 		restartzaehler = 0;
@@ -34,6 +37,13 @@ public class Board extends JPanel implements ActionListener {
 
 		ImageIcon istart = new ImageIcon("bilder/Startscreen.jpg");
 		startscreen = istart.getImage();
+		ImageIcon iWinner1 = new ImageIcon("bilder/Restartscreen-1won.jpg");
+		winner1 = iWinner1.getImage();
+		ImageIcon iWinner2 = new ImageIcon("bilder/Restartecreen-2won.jpg");
+		winner2 = iWinner2.getImage();
+		ImageIcon iDraw = new ImageIcon("bilder/Restartscreen-draw.jpg");
+		draw = iDraw.getImage();
+		
 		ImageIcon irestart = new ImageIcon("bilder/Restartecreen.jpg");
 		restartscreen = irestart.getImage();
 		ImageIcon i0 = new ImageIcon("bilder/block0.jpg");
@@ -71,6 +81,21 @@ public class Board extends JPanel implements ActionListener {
 		if (running) {
 			bomber1.Perma(spielfeld);
 			bomber2.Perma(spielfeld);
+			if (bomber1.lost()) {
+				if (bomber2.isAlive() == false)
+					winner = 3; // 3 heisst DRAW
+				else
+					winner = 2;
+				running = false;
+				neuesSpiel = true;
+			} else if (bomber2.lost()) {
+				if (bomber1.isAlive() == false)
+					winner = 3; // 3 heisst DRAW
+				else
+					winner = 1;
+				running = false;
+				neuesSpiel = true;
+			}
 		} else if (neuesSpiel) {
 			if (restartzaehler == 300) {
 				restartzaehler = 0;
@@ -123,12 +148,20 @@ public class Board extends JPanel implements ActionListener {
 			g2d.drawImage(bomber1.getImage(), bomber1.getX(), bomber1.getY(), null);
 			g2d.drawImage(bomber2.getImage(), bomber2.getX(), bomber2.getY(), null);
 			if (bomber1.arrowIsWorking) { // TODO pfeilrichtungsabfrage
+
 				g2d.drawImage(pfeilRechts, bomber1.arrowPosX, bomber1.arrowPosY, null);
 			}
 		} else if (running == false && neuesSpiel == false) {
 			g2d.drawImage(startscreen, 0, 0, null);
 		} else if (neuesSpiel == true) {
-			g2d.drawImage(restartscreen, 0, 0, null);
+			if (winner==0)
+				g2d.drawImage(restartscreen, 0, 0, null);
+			if (winner==1)
+				g2d.drawImage(winner1, 0, 0, null);
+			else if (winner==2)
+				g2d.drawImage(winner2, 0, 0, null);
+			else if (winner==3)
+				g2d.drawImage(draw, 0, 0, null);
 		}
 	}
 
