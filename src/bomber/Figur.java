@@ -40,13 +40,13 @@ public class Figur {
 		dead = idead.getImage();
 
 		if (Bild == 1) {
-			ImageIcon i1 = new ImageIcon("Images/Player 1/Forward1.jpg");
+			ImageIcon i1 = new ImageIcon("Images/Player 1/Forward1.png");
 			forward = i1.getImage();
-			ImageIcon i2 = new ImageIcon("Images/Player 1/Rght1.jpg");
+			ImageIcon i2 = new ImageIcon("Images/Player 1/Rght1.png");
 			right = i2.getImage();
-			ImageIcon i3 = new ImageIcon("Images/Player 1/Left1.jpg");
+			ImageIcon i3 = new ImageIcon("Images/Player 1/Left1.png");
 			left = i3.getImage();
-			ImageIcon i4 = new ImageIcon("Images/Player 1/Back1.jpg");
+			ImageIcon i4 = new ImageIcon("Images/Player 1/Back1.png");
 			back = i4.getImage();
 		} else if (Bild == 2) {
 			// TODO 2. spieler richtugen

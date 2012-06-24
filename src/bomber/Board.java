@@ -52,7 +52,7 @@ public class Board extends JPanel implements ActionListener {
 		block1 = i1.getImage();
 		ImageIcon i2 = new ImageIcon("bilder/block2.jpg");
 		block2 = i2.getImage();
-		ImageIcon i10 = new ImageIcon("bilder/blauebombe2.png"); // bombe.jpg
+		ImageIcon i10 = new ImageIcon("bilder/blauebombe2.png"); 
 		bomb = i10.getImage();
 		ImageIcon i11 = new ImageIcon("bilder/explosion2.jpg");
 		explo = i11.getImage();
@@ -125,8 +125,6 @@ public class Board extends JPanel implements ActionListener {
 					} else if (spielfeld.getArry(i, j) == Field.block2) {
 						g2d.drawImage(block2, i * blocksize, j * blocksize, null);
 					} else if (spielfeld.getArry(i, j) == Field.bombe) {
-						// wegen transparenz
-						g2d.drawImage(block0, i * blocksize, j * blocksize, null);
 						g2d.drawImage(bomb, i * blocksize, j * blocksize, null);
 					} else if (spielfeld.getArry(i, j) == Field.explosion) {
 						g2d.drawImage(explo, i * blocksize, j * blocksize, null);
