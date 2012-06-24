@@ -15,7 +15,7 @@ public class Frame {
 		frame.setJMenuBar(menubar);
 		JMenu menu = new JMenu("Game");
 		JMenuItem neu = new JMenuItem("Neues Spiel");
-		JMenuItem exit = new JMenuItem("Exit");
+		JMenuItem exit = new JMenuItem("Exit    [ESC]");
 		menubar.add(menu);
 		menu.add(neu);
 		menu.add(exit);
