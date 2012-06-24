@@ -168,6 +168,8 @@ public class Board extends JPanel implements ActionListener {
 	private class AL extends KeyAdapter {
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
+			if (key == KeyEvent.VK_ESCAPE)
+				System.exit(0);
 			if (running) {
 				// bomber1
 				if (key == KeyEvent.VK_LEFT) {
@@ -203,8 +205,8 @@ public class Board extends JPanel implements ActionListener {
 		}
 
 		public void keyReleased(KeyEvent e) {
+			int key = e.getKeyCode();
 			if (running) {
-				int key = e.getKeyCode();
 				// bomber1
 				if (key == KeyEvent.VK_LEFT)
 					bomber1.setdxl(0);
