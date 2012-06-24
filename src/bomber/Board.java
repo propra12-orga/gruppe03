@@ -15,12 +15,12 @@ import javax.swing.Timer;
 public class Board extends JPanel implements ActionListener {
 	private Figur bomber1, bomber2;
 	private Image pfeilLinks, pfeilRechts, pfeilOben, pfeilUnten, startscreen, restartscreen, block0, block1, block2, bomb, explo, broeckel, bogen, triforce, stiefel,
-			bombentasche, reichweite,winner1,winner2,draw;
+			bombentasche, reichweite, winner1, winner2, draw;
 	private Timer time;
 	private Field spielfeld = new Field();
 	public static boolean running, neuesSpiel;
 	public final int blocksize = 60;
-	private int restartzaehler; 
+	private int restartzaehler;
 	public static int winner;
 
 	// winner = {1,2,3} 3<=>draw
@@ -31,7 +31,7 @@ public class Board extends JPanel implements ActionListener {
 		neuesSpiel = false;
 		bomber1 = new Figur(60, 60, 1);
 		bomber2 = new Figur(60 * 13, 60 * 9, 1);
-
+		// TODO LevelLoading so einabeun dass bomber pos uebergeben werden
 		addKeyListener(new AL());
 		setFocusable(true);
 
@@ -43,7 +43,7 @@ public class Board extends JPanel implements ActionListener {
 		winner2 = iWinner2.getImage();
 		ImageIcon iDraw = new ImageIcon("bilder/Restartscreen-draw.jpg");
 		draw = iDraw.getImage();
-		
+
 		ImageIcon irestart = new ImageIcon("bilder/Restartecreen.jpg");
 		restartscreen = irestart.getImage();
 		ImageIcon i0 = new ImageIcon("bilder/block0.jpg");
@@ -52,7 +52,7 @@ public class Board extends JPanel implements ActionListener {
 		block1 = i1.getImage();
 		ImageIcon i2 = new ImageIcon("bilder/block2.jpg");
 		block2 = i2.getImage();
-		ImageIcon i10 = new ImageIcon("bilder/blauebombe2.png"); 
+		ImageIcon i10 = new ImageIcon("bilder/blauebombe2.png");
 		bomb = i10.getImage();
 		ImageIcon i11 = new ImageIcon("bilder/explosion2.jpg");
 		explo = i11.getImage();
@@ -152,13 +152,13 @@ public class Board extends JPanel implements ActionListener {
 		} else if (running == false && neuesSpiel == false) {
 			g2d.drawImage(startscreen, 0, 0, null);
 		} else if (neuesSpiel == true) {
-			if (winner==0)
+			if (winner == 0)
 				g2d.drawImage(restartscreen, 0, 0, null);
-			if (winner==1)
+			if (winner == 1)
 				g2d.drawImage(winner1, 0, 0, null);
-			else if (winner==2)
+			else if (winner == 2)
 				g2d.drawImage(winner2, 0, 0, null);
-			else if (winner==3)
+			else if (winner == 3)
 				g2d.drawImage(draw, 0, 0, null);
 		}
 	}

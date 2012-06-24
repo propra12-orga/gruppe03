@@ -27,6 +27,8 @@ public class Frame {
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
 
+		//TODO Levelloading einbauen
+		
 		class neuAction implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				Board.winner = 0;
