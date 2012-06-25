@@ -83,7 +83,7 @@ public class Field {
 							player2y = j;
 						}
 					} else {
-						setArry(i, j, 1);
+						setArry(i, j, 0);
 					}
 				}
 			}
@@ -147,6 +147,7 @@ public class Field {
 	}
 
 	public void restart() {
-		standartlevel();
+		
+		 standartlevel();
 	}
 }

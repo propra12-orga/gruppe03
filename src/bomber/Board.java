@@ -80,6 +80,9 @@ public class Board extends JPanel implements ActionListener {
 	// Spielfeld größe 15x11
 	public void actionPerformed(ActionEvent e) {
 		if (Frame.laden) {
+			running = false;
+			neuesSpiel = true;
+			Frame.laden = false;
 			if (Frame.leveltoload == 1) {
 				lvltext = new File("level/level1.txt");
 				spielfeld.loadlevel(lvltext);
@@ -112,7 +115,8 @@ public class Board extends JPanel implements ActionListener {
 		} else if (neuesSpiel) {
 			if (restartzaehler == 200) {
 				restartzaehler = 0;
-				spielfeld.restart();
+				if (Frame.leveltoload == 0)
+					spielfeld.restart();
 				bomber1.restart(60 * spielfeld.player1x, 60 * spielfeld.player1y);
 				bomber2.restart(60 * spielfeld.player2x, 60 * spielfeld.player2y);
 				neuesSpiel = false;
