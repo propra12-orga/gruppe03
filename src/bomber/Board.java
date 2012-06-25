@@ -23,6 +23,7 @@ public class Board extends JPanel implements ActionListener {
 	public final int blocksize = 60;
 	private int restartzaehler;
 	public static int winner;
+	public File lvltext;
 
 	// winner = {1,2,3} 3<=>draw
 
@@ -78,6 +79,18 @@ public class Board extends JPanel implements ActionListener {
 
 	// Spielfeld größe 15x11
 	public void actionPerformed(ActionEvent e) {
+		if (Frame.laden) {
+			if (Frame.leveltoload == 1) {
+				lvltext = new File("level/level1.txt");
+				spielfeld.loadlevel(lvltext);
+			} else if (Frame.leveltoload == 2) {
+				lvltext = new File("level/level2.txt");
+				spielfeld.loadlevel(lvltext);
+			} else if (Frame.leveltoload == 3) {
+				lvltext = new File("level/level3.txt");
+				spielfeld.loadlevel(lvltext);
+			}
+		}
 		if (running) {
 			bomber1.Perma(spielfeld);
 			bomber2.Perma(spielfeld);
