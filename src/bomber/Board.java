@@ -11,7 +11,6 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import java.io.*;
 
 public class Board extends JPanel implements ActionListener {
 	private Figur bomber1, bomber2;
@@ -23,7 +22,6 @@ public class Board extends JPanel implements ActionListener {
 	public final int blocksize = 60;
 	private int restartzaehler;
 	public static int winner;
-	public File lvltext;
 
 	// winner = {1,2,3} 3<=>draw
 
@@ -83,16 +81,7 @@ public class Board extends JPanel implements ActionListener {
 			running = false;
 			neuesSpiel = true;
 			Frame.laden = false;
-			if (Frame.leveltoload == 1) {
-				lvltext = new File("level/level1.txt");
-				spielfeld.loadlevel(lvltext);
-			} else if (Frame.leveltoload == 2) {
-				lvltext = new File("level/level2.txt");
-				spielfeld.loadlevel(lvltext);
-			} else if (Frame.leveltoload == 3) {
-				lvltext = new File("level/level3.txt");
-				spielfeld.loadlevel(lvltext);
-			}
+			spielfeld.loadhelper();
 		}
 		if (running) {
 			bomber1.Perma(spielfeld);
@@ -115,8 +104,7 @@ public class Board extends JPanel implements ActionListener {
 		} else if (neuesSpiel) {
 			if (restartzaehler == 200) {
 				restartzaehler = 0;
-				if (Frame.leveltoload == 0)
-					spielfeld.restart();
+				spielfeld.restart();
 				bomber1.restart(60 * spielfeld.player1x, 60 * spielfeld.player1y);
 				bomber2.restart(60 * spielfeld.player2x, 60 * spielfeld.player2y);
 				neuesSpiel = false;

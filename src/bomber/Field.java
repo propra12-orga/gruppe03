@@ -23,7 +23,8 @@ public class Field {
 	public static final int bogen = 22;
 	public static final int stiefel = 23;
 	public static final int umhang = 24;
-
+	
+	public File lvltext;
 	private int[][] feld = new int[15][11];
 	private Scanner s;
 	public int player1x, player1y, player2x, player2y; // array
@@ -146,8 +147,27 @@ public class Field {
 			return false;
 	}
 
+	public void loadhelper() {
+		if (Frame.leveltoload == 1) {
+			lvltext = new File("level/level1.txt");
+			loadlevel(lvltext);
+		} else if (Frame.leveltoload == 2) {
+			lvltext = new File("level/level2.txt");
+			loadlevel(lvltext);
+		} else if (Frame.leveltoload == 3) {
+			lvltext = new File("level/level3.txt");
+			loadlevel(lvltext);
+		}
+	}
+
 	public void restart() {
-		
-		 standartlevel();
+		if (Frame.leveltoload == 0)
+			standartlevel();
+		else if (Frame.leveltoload == 1)
+			loadhelper();
+		else if (Frame.leveltoload == 2)
+			loadhelper();
+		else if (Frame.leveltoload == 3)
+			loadhelper();
 	}
 }
