@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import java.io.*;
 
 public class Board extends JPanel implements ActionListener {
 	private Figur bomber1, bomber2;
@@ -29,9 +30,8 @@ public class Board extends JPanel implements ActionListener {
 		restartzaehler = 0;
 		running = false;
 		neuesSpiel = false;
-		bomber1 = new Figur(60, 60, 1);
-		bomber2 = new Figur(60 * 13, 60 * 9, 1);
-		// TODO LevelLoading so einabeun dass bomber pos uebergeben werden
+		bomber1 = new Figur(60 * spielfeld.player1x, 60 * spielfeld.player1y, 1);
+		bomber2 = new Figur(60 * spielfeld.player2x, 60 * spielfeld.player2y, 1);
 		addKeyListener(new AL());
 		setFocusable(true);
 

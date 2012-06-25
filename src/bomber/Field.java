@@ -26,9 +26,14 @@ public class Field {
 
 	private int[][] feld = new int[15][11];
 	private Scanner s;
-	private int player1x, player1y, player2x, player2y; // array
+	public int player1x, player1y, player2x, player2y; // array
 
 	public Field() {
+		// STandartlevel
+		player1x = 1;
+		player1y = 1;
+		player2x = 13;
+		player2y = 9;
 		for (int in = 0; in < 15; in++) {
 			for (int jn = 0; jn < 11; jn++) {
 
@@ -79,6 +84,7 @@ public class Field {
 				}
 			}
 		} catch (FileNotFoundException e) {
+			System.out.println("kann nicht laden");
 		}
 	}
 
