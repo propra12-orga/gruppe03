@@ -97,7 +97,7 @@ public class Board extends JPanel implements ActionListener {
 				neuesSpiel = true;
 			}
 		} else if (neuesSpiel) {
-			if (restartzaehler == 300) {
+			if (restartzaehler == 200) {
 				restartzaehler = 0;
 				spielfeld.restart();
 				bomber1.restart(60 * spielfeld.player1x, 60 * spielfeld.player1y);

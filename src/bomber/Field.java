@@ -29,7 +29,11 @@ public class Field {
 	public int player1x, player1y, player2x, player2y; // array
 
 	public Field() {
-		// STandartlevel
+		standartlevel();
+
+	}
+
+	public void standartlevel() {
 		player1x = 1;
 		player1y = 1;
 		player2x = 13;
@@ -57,8 +61,8 @@ public class Field {
 		int mom;
 		try {
 			s = new Scanner(f);
-			for (int i = 1; i < 14; i++) {
-				for (int j = 1; j < 10; j++) {
+			for (int j = 1; j < 10; j++) {
+				for (int i = 1; i < 14; i++) {
 					if (s.hasNextInt()) {
 						mom = s.nextInt();
 						if (mom == 0) {
@@ -84,7 +88,7 @@ public class Field {
 				}
 			}
 		} catch (FileNotFoundException e) {
-			System.out.println("kann nicht laden");
+			System.out.println("Level nicht ladbar");
 		}
 	}
 
@@ -143,22 +147,6 @@ public class Field {
 	}
 
 	public void restart() {
-		for (int in = 0; in < 15; in++) {
-			for (int jn = 0; jn < 11; jn++) {
-
-				if (in == 0 || jn == 0 || in == 14 || jn == 10 || (in % 2 == 0 && jn % 2 == 0))
-					feld[in][jn] = 1;
-				else
-					feld[in][jn] = 2;
-
-			}
-		}
-		feld[13][9] = 0;
-		feld[13][8] = 0;
-		feld[12][9] = 0;
-		feld[1][1] = 0;
-		feld[1][2] = 0;
-		feld[2][1] = 0;
-		feld[1][3] = 7;
+		standartlevel();
 	}
 }

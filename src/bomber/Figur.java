@@ -236,7 +236,7 @@ public class Figur {
 	public void Perma(Field feld) {
 		// Verliererabfrage
 		if (isAlive == false) {
-			if (timerLost == 300) {
+			if (timerLost == 200) {
 				lost = true;
 			} else {
 				timerLost += 1;
