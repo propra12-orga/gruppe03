@@ -51,11 +51,15 @@ public class Field {
 		}
 		feld[13][9] = 0;
 		feld[13][8] = 0;
+		feld[13][7] = 0;
 		feld[12][9] = 0;
+		feld[11][9] = 0;
 		feld[1][1] = 0;
 		feld[1][2] = 0;
 		feld[2][1] = 0;
-		feld[1][3] = 7;
+		feld[1][3] = 0;
+		feld[3][1] = 0;
+	//	feld[1][3] = 7;
 	}
 
 	public void loadlevel(File f) {

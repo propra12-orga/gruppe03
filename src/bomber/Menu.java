@@ -1,4 +1,4 @@
-
+/*
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -58,4 +58,4 @@ public class menü{
 		
 		frame.setVisible(true);
 	
-}}
+}}*/
