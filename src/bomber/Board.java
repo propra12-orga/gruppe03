@@ -177,28 +177,28 @@ public class Board extends JPanel implements ActionListener {
 				System.exit(0);
 			if (running) {
 				// bomber1
-				if (key == KeyEvent.VK_LEFT) {
+				if (key == KeyEvent.VK_A) {
 					bomber1.setdxl(-bomber1.getMovementspeed());
-				} else if (key == KeyEvent.VK_RIGHT) {
+				} else if (key == KeyEvent.VK_D) {
 					bomber1.setdxr(bomber1.getMovementspeed());
-				} else if (key == KeyEvent.VK_UP) {
+				} else if (key == KeyEvent.VK_W) {
 					bomber1.setdyl(-bomber1.getMovementspeed());
-				} else if (key == KeyEvent.VK_DOWN) {
+				} else if (key == KeyEvent.VK_S) {
 					bomber1.setdyr(bomber1.getMovementspeed());
-				} else if (key == KeyEvent.VK_CONTROL) {
+				} else if (key == KeyEvent.VK_SPACE) {
 					bomber1.setBomb(spielfeld);
 				}
 
 				// bomber2
-				if (key == KeyEvent.VK_A) {
+				if (key == KeyEvent.VK_LEFT) {
 					bomber2.setdxl(-bomber2.getMovementspeed());
-				} else if (key == KeyEvent.VK_D) {
+				} else if (key == KeyEvent.VK_RIGHT) {
 					bomber2.setdxr(bomber2.getMovementspeed());
-				} else if (key == KeyEvent.VK_W) {
+				} else if (key == KeyEvent.VK_UP) {
 					bomber2.setdyl(-bomber2.getMovementspeed());
-				} else if (key == KeyEvent.VK_S) {
+				} else if (key == KeyEvent.VK_DOWN) {
 					bomber2.setdyr(bomber2.getMovementspeed());
-				} else if (key == KeyEvent.VK_SPACE) {
+				} else if (key == KeyEvent.VK_CONTROL) {
 					bomber2.setBomb(spielfeld);
 				}
 			} else {
@@ -213,22 +213,22 @@ public class Board extends JPanel implements ActionListener {
 			int key = e.getKeyCode();
 			if (running) {
 				// bomber1
-				if (key == KeyEvent.VK_LEFT)
+				if (key == KeyEvent.VK_A)
 					bomber1.setdxl(0);
-				if (key == KeyEvent.VK_RIGHT)
+				if (key == KeyEvent.VK_D)
 					bomber1.setdxr(0);
-				if (key == KeyEvent.VK_UP)
+				if (key == KeyEvent.VK_W)
 					bomber1.setdyl(0);
-				if (key == KeyEvent.VK_DOWN)
+				if (key == KeyEvent.VK_S)
 					bomber1.setdyr(0);
 				// bomber2
-				if (key == KeyEvent.VK_A)
+				if (key == KeyEvent.VK_LEFT)
 					bomber2.setdxl(0);
-				if (key == KeyEvent.VK_D)
+				if (key == KeyEvent.VK_RIGHT)
 					bomber2.setdxr(0);
-				if (key == KeyEvent.VK_W)
+				if (key == KeyEvent.VK_UP)
 					bomber2.setdyl(0);
-				if (key == KeyEvent.VK_S)
+				if (key == KeyEvent.VK_DOWN)
 					bomber2.setdyr(0);
 
 			}
