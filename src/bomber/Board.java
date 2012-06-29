@@ -67,9 +67,16 @@ public class Board extends JPanel implements ActionListener {
 		stiefel = i22.getImage();
 		ImageIcon i23 = new ImageIcon("bilder/Eisenbogen.png");
 		bogen = i23.getImage();
-		ImageIcon iarrow = new ImageIcon("bilder/pfeil_links.jpg");
-		pfeilLinks = iarrow.getImage();
-		// TODO pfeile laden
+
+		ImageIcon iarrowl = new ImageIcon("bilder/pfeil_links.png");
+		pfeilLinks = iarrowl.getImage();
+		ImageIcon iarrowr = new ImageIcon("bilder/pfeil_rechts.png");
+		pfeilRechts = iarrowr.getImage();
+		ImageIcon iarrowu = new ImageIcon("bilder/pfeil_unten.png");
+		pfeilUnten = iarrowu.getImage();
+		ImageIcon iarrowo = new ImageIcon("bilder/pfeil_oben.png");
+		pfeilOben = iarrowo.getImage();
+
 		time = new Timer(5, this);
 		time.start();
 
@@ -123,7 +130,7 @@ public class Board extends JPanel implements ActionListener {
 			for (int i = 0; i < 15; i++) {
 				for (int j = 0; j < 11; j++) {
 
-					if (spielfeld.getArry(i, j) == Field.block0) {
+					if (spielfeld.getArry(i, j) == Field.block0 || spielfeld.getArry(i, j) == Field.flyingarrow || spielfeld.getArry(i, j) == Field.startarrow) {
 						g2d.drawImage(block0, i * blocksize, j * blocksize, null);
 					} else if (spielfeld.getArry(i, j) == Field.block1) {
 						g2d.drawImage(block1, i * blocksize, j * blocksize, null);
@@ -150,9 +157,15 @@ public class Board extends JPanel implements ActionListener {
 			}
 			g2d.drawImage(bomber1.getImage(), bomber1.getX(), bomber1.getY(), null);
 			g2d.drawImage(bomber2.getImage(), bomber2.getX(), bomber2.getY(), null);
-			if (bomber1.arrowIsWorking) { // TODO pfeilrichtungsabfrage
-
-				g2d.drawImage(pfeilRechts, bomber1.arrowPosX, bomber1.arrowPosY, null);
+			if (bomber1.arrowIsWorking) {
+				if (bomber1.arrowRichtung == Figur.rechts)
+					g2d.drawImage(pfeilRechts, bomber1.arrowPosX, bomber1.arrowPosY, null);
+				else if (bomber1.arrowRichtung == Figur.links)
+					g2d.drawImage(pfeilLinks, bomber1.arrowPosX, bomber1.arrowPosY, null);
+				else if (bomber1.arrowRichtung == Figur.unten)
+					g2d.drawImage(pfeilUnten, bomber1.arrowPosX, bomber1.arrowPosY, null);
+				else if (bomber1.arrowRichtung == Figur.oben)
+					g2d.drawImage(pfeilOben, bomber1.arrowPosX, bomber1.arrowPosY, null);
 			}
 		} else if (running == false && neuesSpiel == false) {
 			g2d.drawImage(startscreen, 0, 0, null);
@@ -187,6 +200,8 @@ public class Board extends JPanel implements ActionListener {
 					bomber1.setdyr(bomber1.getMovementspeed());
 				} else if (key == KeyEvent.VK_SPACE) {
 					bomber1.setBomb(spielfeld);
+				} else if (key == KeyEvent.VK_F) {
+					bomber1.shootArrow(spielfeld);
 				}
 
 				// bomber2

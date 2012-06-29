@@ -17,13 +17,15 @@ public class Field {
 	public static final int bombe = 10;
 	public static final int explosion = 11;
 	public static final int broeckeln = 12;
-
+	public static final int flyingarrow = 13;
+	public static final int startarrow = 14;
+	
 	public static final int bombentasche = 20;
 	public static final int reichweite = 21;
 	public static final int bogen = 22;
 	public static final int stiefel = 23;
 	public static final int umhang = 24;
-	
+
 	public File lvltext;
 	private int[][] feld = new int[15][11];
 	private Scanner s;
@@ -59,7 +61,7 @@ public class Field {
 		feld[2][1] = 0;
 		feld[1][3] = 0;
 		feld[3][1] = 0;
-	//	feld[1][3] = 7;
+		// feld[1][3] = 7;
 	}
 
 	public void loadlevel(File f) {
@@ -109,7 +111,15 @@ public class Field {
 		int wert = feld[x][y];
 		if (isItem(x, y))
 			return true;
-		if (wert == block0 || wert == explosion || wert == ausgang)
+		if (wert == block0 || wert == explosion || wert == ausgang || wert == flyingarrow|| wert == startarrow)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isBombe(int x, int y) {
+		int wert = feld[x][y];
+		if (wert == bombe)
 			return true;
 		else
 			return false;
@@ -127,7 +137,14 @@ public class Field {
 		int wert = feld[x][y];
 		if (isItem(x, y))
 			return true;
-		if (wert == block0 || wert == bombe || wert == ausgang)
+		if (wert == block0 || wert == bombe || wert == ausgang || wert==startarrow)
+			return true;
+		else
+			return false;
+	}
+	public boolean isArrow(int x, int y) {
+		int wert = feld[x][y];
+		if (wert == flyingarrow || wert == startarrow)
 			return true;
 		else
 			return false;

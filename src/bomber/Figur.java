@@ -5,11 +5,11 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class Figur {
-	private int m, x, y, dx, dxl, dxr, dy, dyl, dyr, timerLost, richtung, bild, radi, maxBombs, bombsWorking, maxArrows, arrowsWorking;
+	private int m, x, y, dx, dxl, dxr, dy, dyl, dyr, timerLost, richtung, bild, radi, maxBombs, bombsWorking;
 	public int arrowPosX, arrowPosY, arrowRichtung;
 	private Image forward, right, left, back, dead;
 	private boolean isAlive, lost;
-	public boolean arrowIsWorking;
+	public boolean arrowIsWorking, gotArrow;
 
 	public static final int oben = 1;
 	public static final int unten = 2;
@@ -26,8 +26,7 @@ public class Figur {
 		y = yPosition;
 		bombsWorking = 0;
 		maxBombs = 1;
-		maxArrows = 1;
-		arrowsWorking = 0;
+		gotArrow = false;
 		arrowIsWorking = false;
 		lost = false;
 		radi = 2;
@@ -116,14 +115,13 @@ public class Figur {
 		}
 	}
 
-	// Bogen schiessen
-	public void shootArrow(Field feld) {
-		if (maxArrows > arrowsWorking) {
-			Thread fly = new Thread(new Arrow(x, y, richtung, Figur.this));
-			fly.start();
-		}
-
-	}
+	/*
+	 * // Bogen schiessen public void shootArrow(Field feld) { if (maxArrows >
+	 * arrowsWorking) { Thread fly = new Thread(new Arrow(x, y, richtung,
+	 * Figur.this)); fly.start(); }
+	 * 
+	 * }
+	 */
 
 	// einfache Funktionen
 	public void moveLR() {
@@ -196,8 +194,6 @@ public class Figur {
 		isAlive = true;
 		bombsWorking = 0;
 		maxBombs = 1;
-		maxArrows = 1;
-		arrowsWorking = 0;
 		lost = false;
 		timerLost = 0;
 		radi = 2;
@@ -207,7 +203,7 @@ public class Figur {
 		dxl = 0;
 		richtung = unten;
 		arrowIsWorking = false;
-
+		gotArrow = false;
 	}
 
 	// ITEM FUNKTIONEN
@@ -227,13 +223,79 @@ public class Figur {
 	}
 
 	private void getBogen() {
-		// TODO Pfeilschiessen konstruieren
+		gotArrow = true;
 
+	}
+
+	public void shootArrow(Field feld) {
+		if (gotArrow) {
+			if (arrowIsWorking == false) {
+				arrowRichtung = richtung;
+				arrowPosX = gethauptarrayX() * 60 + 25;
+				arrowPosY = gethauptarrayY() * 60 + 25;
+				feld.setArry(arrowPosX / 60, arrowPosY / 60, Field.startarrow);
+				arrowIsWorking = true;
+
+			}
+		}
+
+	}
+
+	public void flyingArrow(Field feld) {
+		int aax = arrowPosX / 60;
+		int aay = arrowPosY / 60;
+		if (feld.isWalkable(aax, aay)) {
+			if (feld.getArry(aax, aay) != Field.startarrow)
+				feld.setArry(aax, aay, Field.flyingarrow);
+			if (arrowRichtung == unten) {
+				if (feld.isArrow(aax, aay - 1))
+					feld.setArry(aax, aay - 1, Field.block0);
+				arrowPosY += 10;
+			} else if (arrowRichtung == oben) {
+				if (feld.isArrow(aax, aay + 1))
+					feld.setArry(aax, aay + 1, Field.block0);
+				arrowPosY -= 10;
+			} else if (arrowRichtung == rechts) {
+				if (feld.isArrow(aax - 1, aay))
+					feld.setArry(aax - 1, aay, Field.block0);
+				arrowPosX += 10;
+			} else if (arrowRichtung == links) {
+				if (feld.isArrow(aax + 1, aay))
+					feld.setArry(aax + 1, aay, Field.block0);
+				arrowPosX -= 10;
+			}
+		} else if (feld.isBombe(aax, aay)) {
+			feld.setArry(aax, aay, Field.explosion);
+			arrowIsWorking = false;
+		} else {
+			if (arrowRichtung == unten) {
+				if (feld.isArrow(aax, aay - 1))
+					feld.setArry(aax, aay - 1, Field.block0);
+				arrowPosY += 10;
+			} else if (arrowRichtung == oben) {
+				if (feld.isArrow(aax, aay + 1))
+					feld.setArry(aax, aay + 1, Field.block0);
+				arrowPosY -= 10;
+			} else if (arrowRichtung == rechts) {
+				if (feld.isArrow(aax - 1, aay))
+					feld.setArry(aax - 1, aay, Field.block0);
+				arrowPosX += 10;
+			} else if (arrowRichtung == links) {
+				if (feld.isArrow(aax + 1, aay))
+					feld.setArry(aax + 1, aay, Field.block0);
+				arrowPosX -= 10;
+			}
+			arrowIsWorking = false;
+		}
 	}
 
 	// Smart Moving Vers 1.0
 	// Abfrage rechts links
 	public void Perma(Field feld) {
+		// ArrowAbfrage
+		if (arrowIsWorking) {
+			flyingArrow(feld);
+		}
 		// Verliererabfrage
 		if (isAlive == false) {
 			if (timerLost == 200) {
@@ -311,22 +373,7 @@ public class Figur {
 		}
 	}
 
-	public void arrowsWorkingPlus(int x, int y, int arrowRichtung) {
-		arrowIsWorking = true;
-		arrowsWorking += 1;
-		this.arrowRichtung = arrowRichtung;
-		arrowPosX = x;
-		arrowPosY = y;
-	}
-
-	public void arrowsWorkingMinus(int x, int y) {
-		if (arrowsWorking > 0)
-			arrowsWorking -= 1;
-
-	}
-
 	public boolean lost() {
-
 		return lost;
 	}
 

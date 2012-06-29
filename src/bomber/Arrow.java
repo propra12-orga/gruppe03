@@ -1,4 +1,4 @@
-package bomber;
+/*package bomber;
 
 public class Arrow implements Runnable {
 	int x, y, richtung; // xy pixelkoordinaten
@@ -17,3 +17,4 @@ public class Arrow implements Runnable {
 	}
 
 }
+*/
