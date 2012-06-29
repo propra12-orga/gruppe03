@@ -152,7 +152,7 @@ public class Field {
 
 	public boolean isExplodierbar(int x, int y) {
 		int wert = feld[x][y];
-		if (wert == block0 || wert == bombe || wert == explosion)
+		if (wert == block0 || wert == bombe || wert == explosion|| wert== startarrow || wert==flyingarrow)
 			return true;
 		else
 			return false;

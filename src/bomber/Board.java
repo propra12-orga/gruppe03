@@ -215,6 +215,8 @@ public class Board extends JPanel implements ActionListener {
 					bomber2.setdyr(bomber2.getMovementspeed());
 				} else if (key == KeyEvent.VK_CONTROL) {
 					bomber2.setBomb(spielfeld);
+				} else if (key == KeyEvent.VK_SHIFT) {
+					bomber2.shootArrow(spielfeld);
 				}
 			} else {
 				if (key == KeyEvent.VK_ENTER && neuesSpiel == false) {
