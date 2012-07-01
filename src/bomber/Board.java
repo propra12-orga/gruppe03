@@ -33,7 +33,7 @@ public class Board extends JPanel implements ActionListener {
 		bomber2 = new Figur(60 * spielfeld.player2x, 60 * spielfeld.player2y, 1);
 		addKeyListener(new AL());
 		setFocusable(true);
-
+		// Bilder Laden
 		ImageIcon istart = new ImageIcon("bilder/Startscreen.jpg");
 		startscreen = istart.getImage();
 		ImageIcon iWinner1 = new ImageIcon("bilder/Restartscreen-1won.jpg");
@@ -123,6 +123,7 @@ public class Board extends JPanel implements ActionListener {
 		repaint();
 	}
 
+	// Spielfeld malen
 	public void paint(Graphics g) {
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
@@ -166,6 +167,16 @@ public class Board extends JPanel implements ActionListener {
 					g2d.drawImage(pfeilUnten, bomber1.arrowPosX, bomber1.arrowPosY, null);
 				else if (bomber1.arrowRichtung == Figur.oben)
 					g2d.drawImage(pfeilOben, bomber1.arrowPosX, bomber1.arrowPosY, null);
+			}
+			if (bomber2.arrowIsWorking) {
+				if (bomber2.arrowRichtung == Figur.rechts)
+					g2d.drawImage(pfeilRechts, bomber2.arrowPosX, bomber2.arrowPosY, null);
+				else if (bomber2.arrowRichtung == Figur.links)
+					g2d.drawImage(pfeilLinks, bomber2.arrowPosX, bomber2.arrowPosY, null);
+				else if (bomber2.arrowRichtung == Figur.unten)
+					g2d.drawImage(pfeilUnten, bomber2.arrowPosX, bomber2.arrowPosY, null);
+				else if (bomber2.arrowRichtung == Figur.oben)
+					g2d.drawImage(pfeilOben, bomber2.arrowPosX, bomber2.arrowPosY, null);
 			}
 		} else if (running == false && neuesSpiel == false) {
 			g2d.drawImage(startscreen, 0, 0, null);

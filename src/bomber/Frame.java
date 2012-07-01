@@ -34,7 +34,7 @@ public class Frame {
 		laden.add(level3);
 
 		frame.add(new Board());
-		frame.setTitle("our Bombing Game 2 gud");
+		frame.setTitle("my Bombing Game 2 gud");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(60 * 15 + 100, 60 * 11 + 70);
 		frame.setVisible(true);

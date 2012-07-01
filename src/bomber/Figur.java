@@ -15,7 +15,8 @@ public class Figur {
 	public static final int unten = 2;
 	public static final int rechts = 3;
 	public static final int links = 4;
-	public static final int startmovement = 3;
+	public static final int startmovement = 2;
+	public static final int startradi = 1;
 
 	public Figur(int xPosition, int yPosition, int Bild) {
 		m = startmovement; // movementreichweite
@@ -29,7 +30,7 @@ public class Figur {
 		gotArrow = false;
 		arrowIsWorking = false;
 		lost = false;
-		radi = 2;
+		radi = startradi;
 		dxl = 0;
 		dxr = 0;
 		dyl = 0;
@@ -115,14 +116,6 @@ public class Figur {
 		}
 	}
 
-	/*
-	 * // Bogen schiessen public void shootArrow(Field feld) { if (maxArrows >
-	 * arrowsWorking) { Thread fly = new Thread(new Arrow(x, y, richtung,
-	 * Figur.this)); fly.start(); }
-	 * 
-	 * }
-	 */
-
 	// einfache Funktionen
 	public void moveLR() {
 		x += dx;
@@ -196,7 +189,7 @@ public class Figur {
 		maxBombs = 1;
 		lost = false;
 		timerLost = 0;
-		radi = 2;
+		radi = startradi;
 		dxl = 0;
 		dxr = 0;
 		dyl = 0;
@@ -216,9 +209,11 @@ public class Figur {
 	}
 
 	public void getStiefel() {
-		if (m == 3)
+		if (m == 2)
+			m = 3;
+		else if (m == 3)
 			m = 4;
-		if (m == 4)
+		else if (m == 4)
 			m = 5;
 	}
 

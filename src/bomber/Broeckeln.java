@@ -12,27 +12,28 @@ public class Broeckeln implements Runnable {
 		y = yArray;
 		this.feld = feld;
 		Random r = new Random();
-		randomitem = r.nextInt(8); // =0,1,..,7
+		randomitem = r.nextInt(100); // =0,1,..,7
 
 	}
 
 	public void run() {
 		try {
 			boolean newitemOK = false;
+			// Ob neues Item erstellt wird und dann welches
 			if (feld.getArry(x, y) == Field.block2)
 				newitemOK = true;
 			feld.setArry(x, y, 12);
 			Thread.sleep(Explosion.explotime);
 			if (newitemOK) {
-				if (randomitem == 0 || randomitem == 1) {
+				if (randomitem >= 0 && randomitem < 20) {
 					feld.setArry(x, y, Field.bombentasche);
-				} else if (randomitem == 2 || randomitem == 3) {
+				} else if (randomitem >= 20 && randomitem < 40) {
 					feld.setArry(x, y, Field.reichweite);
-				} else if (randomitem == 4) {
+				} else if (randomitem >= 40 && randomitem < 40) {
 					feld.setArry(x, y, Field.stiefel);
-				} else if (randomitem ==5) {
+				} else if (randomitem >= 50 && randomitem < 57) {
 					feld.setArry(x, y, Field.bogen);
-				}else {
+				} else {
 					feld.setArry(x, y, 0);
 				}
 			} else {
