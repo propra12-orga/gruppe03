@@ -16,7 +16,7 @@ public class Bombe implements Runnable, ActionListener {
 		r = radius;
 		x = xPosition; // array posi
 		y = yPosition;
-		this.spieler=spieler;
+		this.spieler = spieler;
 		this.feld = feld;
 		ende = false;
 	}
@@ -34,15 +34,15 @@ public class Bombe implements Runnable, ActionListener {
 
 	public void run() {
 		try {
-			feld.setArry(spieler.gethauptarrayX(), spieler.gethauptarrayY(), 10);
+			feld.setArry(x, y, Field.bombe);
 			spieler.bombsWorkingPlus();
 			time = new Timer(2000, this);
 			time.start();
 			while (ende == false) {
-				if (Board.neuesSpiel){
-					ende=true;
+				if (Board.neuesSpiel) {
+					ende = true;
 					time.stop();
-				}else if (feld.getArry(x, y) != 10) {
+				} else if (feld.getArry(x, y) != 10) {
 					Timerende();
 				}
 				Thread.sleep(10);
@@ -59,57 +59,61 @@ public class Bombe implements Runnable, ActionListener {
 				Thread e1 = new Thread(new Explosion(x + i, y, feld));
 				e1.start();
 			} else {
-				if (feld.isZerstoerar(x+i, y)){
-					Thread e2 = new Thread (new Broeckeln(x + i, y, feld));
+				if (feld.isZerstoerar(x + i, y)) {
+					Thread e2 = new Thread(new Broeckeln(x + i, y, feld));
 					e2.start();
 					break;
-				}else{
-					break;}
+				} else {
+					break;
+				}
 			}
 		}
 
 		for (int i = 1; i <= r; i++) {
-			if (feld.isExplodierbar(x-i, y)) {
+			if (feld.isExplodierbar(x - i, y)) {
 				Thread e1 = new Thread(new Explosion(x - i, y, feld));
 				e1.start();
 			} else {
-				if (feld.isZerstoerar(x-i, y)){
-					Thread e2 = new Thread (new Broeckeln(x - i, y, feld));
+				if (feld.isZerstoerar(x - i, y)) {
+					Thread e2 = new Thread(new Broeckeln(x - i, y, feld));
 					e2.start();
 					break;
-				}else{
-					break;}
+				} else {
+					break;
+				}
 			}
 		}
 
 		for (int i = 1; i <= r; i++) {
-			if (feld.isExplodierbar(x, y+i)) {
+			if (feld.isExplodierbar(x, y + i)) {
 				Thread e1 = new Thread(new Explosion(x, y + i, feld));
 				e1.start();
 			} else {
-				if (feld.isZerstoerar(x, y+i)){
-					Thread e2 = new Thread (new Broeckeln(x , y+i, feld));
+				if (feld.isZerstoerar(x, y + i)) {
+					Thread e2 = new Thread(new Broeckeln(x, y + i, feld));
 					e2.start();
 					break;
-				}else{
-					break;}
+				} else {
+					break;
+				}
 			}
 		}
 
 		for (int i = 1; i <= r; i++) {
-			if (feld.isExplodierbar(x, y-i)) {
+			if (feld.isExplodierbar(x, y - i)) {
 				Thread e1 = new Thread(new Explosion(x, y - i, feld));
 				e1.start();
 			} else {
-				if (feld.isZerstoerar(x, y-i)){
-					Thread e2 = new Thread (new Broeckeln(x , y-i, feld));
+				if (feld.isZerstoerar(x, y - i)) {
+					Thread e2 = new Thread(new Broeckeln(x, y - i, feld));
 					e2.start();
 					break;
-				}else{
-					break;}
+				} else {
+					break;
+				}
 			}
 		}
 	}
 }
-//public void hilf(int i, int j){
-//	if feld.getArry(i, j)==0 ||}
+// public void hilf(int i, int j){
+// if feld.getArry(i, j)==0 ||}

@@ -210,7 +210,7 @@ public class Board extends JPanel implements ActionListener {
 				} else if (key == KeyEvent.VK_S) {
 					bomber1.setdyr(bomber1.getMovementspeed());
 				} else if (key == KeyEvent.VK_SPACE) {
-					bomber1.setBomb(spielfeld);
+					bomber1.setBomb(bomber1.gethauptarrayX(), bomber1.gethauptarrayY(), bomber1.richtung, spielfeld);
 				} else if (key == KeyEvent.VK_F) {
 					bomber1.shootArrow(spielfeld);
 				}
@@ -225,7 +225,7 @@ public class Board extends JPanel implements ActionListener {
 				} else if (key == KeyEvent.VK_DOWN) {
 					bomber2.setdyr(bomber2.getMovementspeed());
 				} else if (key == KeyEvent.VK_CONTROL) {
-					bomber2.setBomb(spielfeld);
+					bomber2.setBomb(bomber2.gethauptarrayX(), bomber2.gethauptarrayY(), bomber2.richtung, spielfeld);
 				} else if (key == KeyEvent.VK_SHIFT) {
 					bomber2.shootArrow(spielfeld);
 				}

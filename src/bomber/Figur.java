@@ -5,8 +5,8 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class Figur {
-	private int m, x, y, dx, dxl, dxr, dy, dyl, dyr, timerLost, richtung, bild, radi, maxBombs, bombsWorking;
-	public int arrowPosX, arrowPosY, arrowRichtung, arrowgeschwindigkeit;
+	private int m, x, y, dx, dxl, dxr, dy, dyl, dyr, timerLost, bild, radi, maxBombs, bombsWorking;
+	public int arrowPosX, arrowPosY, arrowRichtung, arrowgeschwindigkeit, richtung;
 	private Image forward, right, left, back, dead;
 	private boolean isAlive, lost, getStiefel;
 	public boolean arrowIsWorking, gotArrow;
@@ -111,11 +111,26 @@ public class Figur {
 	}
 
 	// bombe legen
-	public void setBomb(Field feld) {
-		if (maxBombs > bombsWorking && feld.getArry(gethauptarrayX(), gethauptarrayY()) == Field.block0 && isAlive) {
-			Thread bombe = new Thread(new Bombe(gethauptarrayX(), gethauptarrayY(), radi, feld, Figur.this));
+	public void setBomb(int x, int y, int r, Field feld) {
+		if (maxBombs > bombsWorking && feld.getArry(x, y) == Field.block0 && isAlive) {
+			Thread bombe = new Thread(new Bombe(x, y, radi, feld, Figur.this));
 			bombe.start();
-
+		} else if (maxBombs > bombsWorking && feld.getArry(x, y) == Field.bombe && isAlive) {
+			int nx = x;
+			int ny = y;
+			for (int i = bombsWorking; i < maxBombs; i++) {
+				if (richtung == unten)
+					ny += 1;
+				if (richtung == oben)
+					ny -= 1;
+				if (richtung == rechts)
+					nx += 1;
+				if (richtung == links)
+					nx -= 1;
+				if (feld.getArry(nx, ny) == Field.block0) {
+					setBomb(nx, ny, r, feld);
+				}
+			}
 		}
 	}
 
@@ -249,7 +264,7 @@ public class Figur {
 	public void flyingArrow(Field feld) {
 		int aax = arrowPosX / 60;
 		int aay = arrowPosY / 60;
-		if (feld.isWalkable(aax, aay) && feld.isItem(aax, aay) == false) {
+		if (feld.isWalkable(aax, aay) && feld.isItem(aax, aay) == false && feld.getArry(aax, aay) != Field.explosion) {
 			if (feld.getArry(aax, aay) != Field.startarrow)
 				feld.setArry(aax, aay, Field.flyingarrow);
 			if (arrowRichtung == unten) {
@@ -271,6 +286,8 @@ public class Figur {
 			}
 		} else if (feld.isBombe(aax, aay)) {
 			feld.setArry(aax, aay, Field.explosion);
+			arrowIsWorking = false;
+		} else if (feld.getArry(aax, aay) == Field.explosion) {
 			arrowIsWorking = false;
 		} else if (feld.isItem(aax, aay)) {
 			Thread e1 = new Thread(new Broeckeln(aax, aay, feld));
@@ -300,11 +317,6 @@ public class Figur {
 	// Smart Moving Vers 1.0
 	// Abfrage rechts links
 	public void Perma(Field feld) {
-		// bugfix bei stiefeln
-		if (getStiefel) {
-			getStiefel();
-			getStiefel = false;
-		}
 		// ArrowAbfrage
 		if (arrowIsWorking) {
 			flyingArrow(feld);
@@ -383,6 +395,11 @@ public class Figur {
 			}
 		} else {
 			isAlive = false;
+		}
+		// bugfix bei stiefeln
+		if (getStiefel) {
+			getStiefel();
+			getStiefel = false;
 		}
 	}
 
