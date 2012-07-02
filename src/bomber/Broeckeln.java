@@ -29,9 +29,9 @@ public class Broeckeln implements Runnable {
 					feld.setArry(x, y, Field.bombentasche);
 				} else if (randomitem >= 20 && randomitem < 40) {
 					feld.setArry(x, y, Field.reichweite);
-				} else if (randomitem >= 40 && randomitem < 40) {
+				} else if (randomitem >= 40 && randomitem < 55) {
 					feld.setArry(x, y, Field.stiefel);
-				} else if (randomitem >= 50 && randomitem < 57) {
+				} else if (randomitem >= 55 && randomitem < 64) {
 					feld.setArry(x, y, Field.bogen);
 				} else {
 					feld.setArry(x, y, 0);
